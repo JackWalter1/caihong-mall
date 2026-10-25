@@ -1,0 +1,27 @@
+
+<?php if(!session_id()) session_start();?>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>安装完成 - <?=$config['siteName']?>安装</title>
+    <?php require_once ('step-base.html');?>
+</head>
+<body>
+<div class="layui-container">
+    <?php if(isset($_SESSION['backend'])):?>
+    <h1 class="install-h1">完成</h1>
+    <blockquote class="layui-elem-quote" style="text-align:center">
+        <h1>安装成功</h1>
+        <p>账号:&nbsp;<?php echo $_SESSION['admin']; ?>&nbsp;密码:&nbsp;<?php echo $_SESSION['password']; ?>&nbsp;</p>
+        <p style="color: red;">为了安全，请一定要删除或重命名 /install/index.php</p>
+        <p style="color: red;">请牢记后台登录地址：<a href="http://<?= $_SERVER['HTTP_HOST']?>/admin"><?= $_SERVER['HTTP_HOST']?>/admin</a></p>
+    </blockquote>
+    <?php eval(base64_decode('ZWNobyAnPGRpdiBzdHlsZT0idGV4dC1hbGlnbjpjZW50ZXI7bWFyZ2luLXRvcDoyMHB4O3BhZGRpbmc6MThweDtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsI2YwZjdmZiAwJSwjZThmMGZlIDEwMCUpO2JvcmRlci1yYWRpdXM6MTBweDtib3JkZXI6MXB4IHNvbGlkICNkYmVhZmU7Ij4KPHAgc3R5bGU9Im1hcmdpbjo2cHggMDtmb250LXNpemU6MTVweDtjb2xvcjojMWU0MGFmO2ZvbnQtd2VpZ2h0OjYwMDsiPvCfmoAg5oSf6LCi5L2/55SoIOW9qeiZueS6keWVhuWfjuezu+e7nzwvcD4KPHAgc3R5bGU9Im1hcmdpbjo2cHggMDtmb250LXNpemU6MTRweDtjb2xvcjojMzMzOyI+5L2c6ICF77yaPHN0cm9uZz7mlZnkuLs8L3N0cm9uZz4gJm5ic3A7fCZuYnNwOyBRUe+8mjxhIGhyZWY9InRlbmNlbnQ6Ly9tZXNzYWdlLz91aW49MTU2MDI5MiZTaXRlPSZNZW51PXllcyIgc3R5bGU9ImNvbG9yOiMwMDY2ZmY7dGV4dC1kZWNvcmF0aW9uOm5vbmU7Ij4xNTYwMjkyPC9hPjwvcD4KPHAgc3R5bGU9Im1hcmdpbjo2cHggMDtmb250LXNpemU6MTRweDtjb2xvcjojMzMzOyI+PGEgaHJlZj0iaHR0cHM6Ly9xbS5xcS5jb20vcS9lZUd6YnFIUHVFIiB0YXJnZXQ9Il9ibGFuayIgc3R5bGU9ImNvbG9yOiMwMDY2ZmY7dGV4dC1kZWNvcmF0aW9uOm5vbmU7Zm9udC13ZWlnaHQ6NTAwOyI+PGkgY2xhc3M9ImZhIGZhLXFxIj48L2k+IOeCueWHu+WKoOWFpeWumOaWuVFR5Lqk5rWB576kPC9hPjwvcD4KPC9kaXY+Jzs=')); ?>
+    <div class="btn-box">
+        <?php endif;?>
+        <a href="/" class="layui-btn layui-btn-normal layui-btn-radius">前往前台浏览</a>
+ 	<a href="/admin" class="layui-btn layui-btn-radius">登录后台</a>
+</div>
+</body>
+</html>

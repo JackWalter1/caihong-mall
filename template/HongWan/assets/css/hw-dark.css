@@ -1,0 +1,816 @@
+/* ============================================================
+   HongWan 深色玻璃皮肤（user / sup 用户后台专用）
+   ------------------------------------------------------------
+   在 hw-gradient.css 之后加载，把浅色后台覆盖为深色玻璃：
+   深海军蓝流动背景 + 深色半透明毛玻璃卡片 + 蓝色高亮
+   回滚：删除 user/head*.php / sup/head*.php 里本文件的 <link>。
+   ============================================================ */
+
+
+/* ---------- 1. 深海军蓝流动背景 ---------- */
+@keyframes hw-dark-flow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    background: linear-gradient(135deg, #0a1220 0%, #0d1a30 30%, #0b1526 55%, #0e1c34 80%, #0a1220 100%) fixed !important;
+    background-size: 400% 400% !important;
+    animation: hw-dark-flow 26s ease-in-out infinite !important;
+    color: #dfe6f2 !important;
+}
+
+/* 深色系光晕：蓝/青/紫暗光斑 */
+@keyframes hw-dark-orb-a {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(4%, -3%) scale(1.15); }
+}
+@keyframes hw-dark-orb-b {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-5%, 4%) scale(1.10); }
+}
+
+body::before {
+    background:
+        radial-gradient(circle at 14% 16%, rgba(40, 90, 200, .22), transparent 44%),
+        radial-gradient(circle at 86% 10%, rgba(30, 140, 190, .16), transparent 40%),
+        radial-gradient(circle at 50% 96%, rgba(70, 60, 180, .18), transparent 46%) !important;
+    animation: hw-dark-orb-a 28s ease-in-out infinite;
+}
+
+body::after {
+    background:
+        radial-gradient(circle at 80% 74%, rgba(40, 110, 220, .14), transparent 44%),
+        radial-gradient(circle at 20% 80%, rgba(160, 90, 200, .10), transparent 40%) !important;
+    animation: hw-dark-orb-b 34s ease-in-out infinite;
+}
+
+
+/* ---------- 2. 深色玻璃卡片 ---------- */
+.panel,
+.panel-default,
+.main-panel {
+    background: rgba(13, 24, 44, .62) !important;
+    -webkit-backdrop-filter: saturate(150%) blur(20px);
+    backdrop-filter: saturate(150%) blur(20px);
+    border: 1px solid rgba(255, 255, 255, .10) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 36px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .06) !important;
+}
+
+.panel:hover {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .08) !important;
+}
+
+.panel-heading {
+    background: linear-gradient(135deg, rgba(20, 34, 60, .55), rgba(13, 24, 44, .35)) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .09) !important;
+    color: #fff !important;
+}
+
+.panel-footer {
+    background: rgba(10, 18, 34, .45) !important;
+    border-top: 1px solid rgba(255, 255, 255, .09) !important;
+}
+
+.well {
+    background: rgba(255, 255, 255, .06) !important;
+    border: 1px solid rgba(255, 255, 255, .10) !important;
+}
+
+
+/* ---------- 3. 侧边栏 / 顶栏：深色玻璃 ---------- */
+.app-aside,
+.app-aside.bg-dark,
+.app-aside.bg-light,
+.app-aside.hidden-xs {
+    background: rgba(8, 14, 28, .78) !important;
+    -webkit-backdrop-filter: saturate(140%) blur(22px);
+    backdrop-filter: saturate(140%) blur(22px);
+    border-right: 1px solid rgba(255, 255, 255, .08) !important;
+}
+
+.app-header.navbar,
+.app-header .navbar-header {
+    background: rgba(8, 14, 28, .80) !important;
+    -webkit-backdrop-filter: saturate(140%) blur(22px);
+    backdrop-filter: saturate(140%) blur(22px);
+    border-bottom: 1px solid rgba(255, 255, 255, .08) !important;
+}
+
+/* 侧边栏菜单文字 */
+.app-aside .nav li a,
+.nav-primary ul.nav li a {
+    color: rgba(255, 255, 255, .72) !important;
+}
+.app-aside .nav li a:hover,
+.nav-primary ul.nav li a:hover {
+    background: rgba(255, 255, 255, .07) !important;
+    color: #fff !important;
+}
+
+/* 激活项：亮蓝高亮块 */
+.nav-primary ul.nav li.active a,
+.app-aside .nav li.active a {
+    background: linear-gradient(135deg, rgba(31, 123, 255, .92), rgba(10, 92, 232, .92)) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 16px rgba(31, 123, 255, .35) !important;
+}
+
+/* 激活彩条提亮 */
+.nav-primary ul.nav li.active::before,
+.app-aside .nav li.active::before {
+    background: linear-gradient(180deg, #4da3ff, #7d97f5, #b39df2) !important;
+}
+
+
+/* ---------- 4. 文字体系翻白 ---------- */
+body, .panel, .panel-body, .panel-heading,
+.app-content, .app-content-body {
+    color: #dfe6f2;
+}
+
+h1, h2, h3, h4, h5, h6,
+.panel-title, .font-bold, b, strong {
+    color: #f4f7fc;
+}
+
+.text-muted { color: rgba(255, 255, 255, .50) !important; }
+.text-dark  { color: rgba(255, 255, 255, .85) !important; }
+
+a { color: #5b9dff; }
+a:hover { color: #85b8ff; }
+
+.small, small { color: rgba(255, 255, 255, .55); }
+
+/* 面包屑/提示条 */
+.bg-light.lter, .bg-light.lter.b-b, .wrapper-sm.bg-light,
+.bg-light, .bg-white-only, .bg-white {
+    background: rgba(255, 255, 255, .05) !important;
+    color: #dfe6f2 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .08) !important;
+}
+
+
+/* ---------- 5. 按钮体系（对照截图） ---------- */
+/* 主操作：亮蓝渐变（自助下单 / 充值） */
+.btn-primary,
+.btn-info,
+.uc-pill-blue,
+.uc-cell.blue {
+    background: linear-gradient(135deg, #1f7bff, #0a5ce8) !important;
+    border: none !important;
+    color: #fff !important;
+    box-shadow: 0 6px 18px rgba(31, 123, 255, .38) !important;
+}
+.btn-primary:hover, .btn-info:hover { filter: brightness(1.12) !important; }
+
+/* 绿色：充值余额 / 签到（亮绿渐变与暗绿玻璃） */
+.btn-success,
+.uc-pill-green {
+    background: linear-gradient(135deg, #2ecc71, #1fa855) !important;
+    border: none !important;
+    color: #fff !important;
+    box-shadow: 0 6px 18px rgba(46, 204, 113, .35) !important;
+}
+.uc-cell.green {
+    background: rgba(46, 140, 90, .28) !important;
+    border: 1px solid rgba(80, 200, 140, .35) !important;
+    color: #7fe0ad !important;
+    box-shadow: none !important;
+}
+
+/* 黄棕玻璃：站内通知 */
+.uc-cell.yellow {
+    background: rgba(170, 130, 40, .28) !important;
+    border: 1px solid rgba(220, 175, 80, .35) !important;
+    color: #eccd8a !important;
+    box-shadow: none !important;
+}
+
+/* 默认/中性按钮：灰蓝玻璃 */
+.btn-default,
+.uc-cell:not(.blue):not(.green):not(.yellow) {
+    background: rgba(255, 255, 255, .08) !important;
+    border: 1px solid rgba(255, 255, 255, .14) !important;
+    color: #dfe6f2 !important;
+    box-shadow: none !important;
+}
+.btn-default:hover,
+.uc-cell:not(.blue):not(.green):not(.yellow):hover {
+    background: rgba(255, 255, 255, .14) !important;
+    color: #fff !important;
+}
+
+/* 危险按钮 */
+.btn-danger, .uc-cell.danger:hover { box-shadow: 0 6px 18px rgba(255, 59, 48, .30) !important; }
+
+.label-primary, .label-info {
+    background: linear-gradient(135deg, #1f7bff, #0a5ce8) !important;
+}
+.label-success { background: linear-gradient(135deg, #2ecc71, #1fa855) !important; }
+.label-warning { background: linear-gradient(135deg, #e8a13c, #d4820a) !important; }
+.label-danger  { background: linear-gradient(135deg, #ff5f57, #e0342b) !important; }
+
+
+/* ---------- 6. 表单 / 表格 / 列表深色化 ---------- */
+.form-control {
+    background-color: rgba(255, 255, 255, .08) !important;
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+    color: #f0f4fb !important;
+}
+.form-control::placeholder { color: rgba(255, 255, 255, .35); }
+.form-control:focus {
+    border-color: rgba(80, 150, 255, .65) !important;
+    box-shadow: 0 0 0 3px rgba(31, 123, 255, .18) !important;
+}
+
+select.form-control option,
+select option {
+    background: #0d1a30;
+    color: #dfe6f2;
+}
+
+.table, .table > tbody > tr, .table > thead > tr,
+.table > tbody > tr > td, .table > thead > tr > th {
+    background-color: transparent !important;
+    color: #d5dde9 !important;
+    border-color: rgba(255, 255, 255, .08) !important;
+}
+.table > thead > tr > th { color: #fff !important; }
+.table-striped > tbody > tr:nth-of-type(odd) { background-color: rgba(255, 255, 255, .04) !important; }
+.table-hover > tbody > tr:hover { background-color: rgba(31, 123, 255, .10) !important; }
+
+.list-group-item {
+    background: rgba(255, 255, 255, .06) !important;
+    border-color: rgba(255, 255, 255, .08) !important;
+    color: #dfe6f2 !important;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    background: rgba(255, 255, 255, .08) !important;
+    border-color: rgba(255, 255, 255, .12) !important;
+    color: #dfe6f2 !important;
+}
+.pagination > .active > a,
+.pagination > .active > span {
+    background: linear-gradient(135deg, #1f7bff, #0a5ce8) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+}
+
+.input-group-addon {
+    background: rgba(255, 255, 255, .08) !important;
+    border-color: rgba(255, 255, 255, .14) !important;
+    color: #dfe6f2 !important;
+}
+
+/* 进度条 / 徽章 */
+.progress { background: rgba(255, 255, 255, .08) !important; }
+.progress-bar { background: linear-gradient(90deg, #1f7bff, #7d97f5) !important; }
+.badge { background: rgba(255, 255, 255, .15) !important; color: #fff !important; }
+
+
+/* ---------- 7. 弹层深色玻璃 ---------- */
+.modal-content {
+    background: rgba(13, 22, 40, .92) !important;
+    -webkit-backdrop-filter: saturate(150%) blur(24px);
+    backdrop-filter: saturate(150%) blur(24px);
+    border: 1px solid rgba(255, 255, 255, .12) !important;
+    color: #dfe6f2 !important;
+}
+
+.dropdown-menu {
+    background-color: rgba(13, 22, 40, .95) !important;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, .12) !important;
+}
+.dropdown-menu > li > a { color: rgba(255, 255, 255, .80) !important; }
+.dropdown-menu > li > a:hover { background: rgba(31, 123, 255, .25) !important; color: #fff !important; }
+
+/* layui / layer 弹窗 */
+.layui-layer {
+    background-color: rgba(13, 22, 40, .95) !important;
+    color: #dfe6f2 !important;
+    border: 1px solid rgba(255, 255, 255, .12) !important;
+}
+.layui-layer-title {
+    background: rgba(255, 255, 255, .06) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .10) !important;
+    color: #fff !important;
+}
+.layui-layer-btn a {
+    background: rgba(255, 255, 255, .10) !important;
+    color: #dfe6f2 !important;
+    border-color: rgba(255, 255, 255, .15) !important;
+}
+.layui-layer-btn .layui-layer-btn0 {
+    background: linear-gradient(135deg, #1f7bff, #0a5ce8) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+}
+
+
+/* ---------- 8. 首页自定义布局深色化（user/index.php） ---------- */
+.uc-stats {
+    background: rgba(255, 255, 255, .05) !important;
+    border-top: 1px solid rgba(255, 255, 255, .09) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .09) !important;
+}
+.uc-stat + .uc-stat::before { background: rgba(255, 255, 255, .12) !important; }
+.uc-stat-label { color: rgba(255, 255, 255, .55) !important; }
+.uc-stat-value { color: #f4f7fc !important; }
+.uc-balance-line { color: rgba(255, 255, 255, .60) !important; }
+.uc-balance-line b { color: #fff !important; }
+
+.uc-cell:not(.blue):not(.green):not(.yellow) {
+    background: rgba(255, 255, 255, .08) !important;
+    border: 1px solid rgba(255, 255, 255, .14) !important;
+    color: #dfe6f2 !important;
+}
+.uc-cell:not(.blue):not(.green):not(.yellow):hover {
+    background: rgba(255, 255, 255, .15) !important;
+    color: #6db1ff !important;
+}
+
+.panel-header {
+    background: linear-gradient(135deg, rgba(20, 34, 60, .55), rgba(13, 24, 44, .35)) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .09) !important;
+}
+.panel-title { color: #f4f7fc !important; }
+
+.site-info-item { border-bottom: 1px solid rgba(255, 255, 255, .08) !important; }
+.site-info-label { color: rgba(255, 255, 255, .55) !important; }
+.site-info-value { color: #dfe6f2 !important; }
+.site-status.normal { color: #2ecc71 !important; }
+.site-status.expired { color: #ff5f57 !important; }
+.no-site-message { color: rgba(255, 255, 255, .60) !important; }
+.domain-link, .fanghong-link { color: #5b9dff !important; }
+
+.alert-warning {
+    background: rgba(120, 90, 20, .30) !important;
+    border: 1px solid rgba(232, 161, 60, .40) !important;
+    color: #f0cf9a !important;
+    border-radius: 14px;
+}
+
+.sales-chart-container {
+    background: rgba(255, 255, 255, .05) !important;
+    border: 1px solid rgba(255, 255, 255, .10) !important;
+}
+.sales-stats-title { color: #f4f7fc !important; }
+.sales-tab {
+    background: rgba(255, 255, 255, .08) !important;
+    border: 1px solid rgba(255, 255, 255, .14) !important;
+    color: rgba(255, 255, 255, .65) !important;
+}
+.sales-tab.active {
+    background: linear-gradient(135deg, #1f7bff, #0a5ce8) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+}
+.chart-loading { color: rgba(255, 255, 255, .60) !important; }
+
+.announcement-content { color: rgba(255, 255, 255, .65) !important; }
+
+.service-button {
+    background: rgba(255, 255, 255, .08) !important;
+    border: 1px solid rgba(255, 255, 255, .14) !important;
+    color: #dfe6f2 !important;
+}
+
+
+/* ---------- 9. head2 简约皮 widget 深色化 ---------- */
+.widget {
+    background: rgba(13, 24, 44, .70) !important;
+    -webkit-backdrop-filter: saturate(150%) blur(20px);
+    backdrop-filter: saturate(150%) blur(20px);
+    border: 1px solid rgba(255, 255, 255, .10) !important;
+    color: #dfe6f2 !important;
+}
+.auth-login-card .widget { background: rgba(13, 24, 44, .72) !important; }
+
+
+/* ---------- 10. 滚动条 ---------- */
+::-webkit-scrollbar-track { background: rgba(255, 255, 255, .04); }
+::-webkit-scrollbar-thumb { background: rgba(90, 140, 240, .35); }
+::-webkit-scrollbar-thumb:hover { background: rgba(90, 140, 240, .55); }
+
+
+/* ---------- 11. 兜底 ---------- */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .panel, .panel-default, .main-panel { background: rgba(12, 21, 39, .97) !important; }
+    .app-aside { background: rgba(8, 14, 28, .98) !important; }
+    .app-header.navbar, .app-header .navbar-header { background: rgba(8, 14, 28, .97) !important; }
+    .modal-content, .dropdown-menu, .widget { background: rgba(12, 21, 39, .98) !important; }
+}
+
+
+/* ---------- 13. 高特异性结构修正（顶栏 #header / 侧边栏 #aside） ---------- */
+/* 说明：系统自带 CSS 用了 ID/高特异性选择器设白底，这里用 ID 级选择器 + !important 反压 */
+
+/* 13.1 顶栏整条深色玻璃 */
+#header.app-header.navbar,
+header#header.navbar {
+    background: rgba(8, 14, 28, .82) !important;
+    -webkit-backdrop-filter: saturate(140%) blur(22px) !important;
+    backdrop-filter: saturate(140%) blur(22px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .08) !important;
+}
+
+#header .navbar-header,
+#header .navbar-brand {
+    background: transparent !important;
+    color: #f4f7fc !important;
+    border-bottom: none !important;
+}
+#header .navbar-brand:hover { color: #fff !important; }
+#header .navbar-btn,
+#header .navbar-nav > li > a {
+    color: rgba(255, 255, 255, .80) !important;
+    background: transparent !important;
+}
+#header .navbar-btn:hover,
+#header .navbar-nav > li > a:hover { color: #fff !important; background: rgba(255, 255, 255, .08) !important; }
+#header .navbar-collapse { background: transparent !important; border-bottom: none !important; }
+
+/* 13.2 侧边栏整条深色玻璃（覆盖 #aside ID 级白底） */
+#aside.app-aside,
+aside#aside,
+#aside .app-aside,
+#aside .aside-wrap,
+#aside .navi-wrap,
+#aside nav.navi {
+    background: rgba(8, 14, 28, .80) !important;
+    -webkit-backdrop-filter: saturate(140%) blur(22px) !important;
+    backdrop-filter: saturate(140%) blur(22px) !important;
+    border-right: 1px solid rgba(255, 255, 255, .08) !important;
+}
+
+/* 侧边栏滚动容器任何内层都不能是白底 */
+#aside div { background-color: transparent !important; }
+#aside nav, #aside ul, #aside li { background-color: transparent !important; }
+
+/* 13.3 菜单项与子菜单 */
+#aside .navi ul.nav > li > a,
+#aside ul.nav > li > a {
+    color: rgba(255, 255, 255, .74) !important;
+    background: transparent !important;
+    border-radius: 10px;
+    margin: 2px 8px;
+    transition: all .18s ease;
+}
+#aside .navi ul.nav > li > a:hover,
+#aside ul.nav > li > a:hover {
+    background: rgba(255, 255, 255, .08) !important;
+    color: #fff !important;
+}
+
+/* 分组标题（导航 / 商城 / 查询 / 其他） */
+#aside .navi .text-muted,
+#aside li.text-muted,
+#aside .padder.text-muted {
+    color: rgba(255, 255, 255, .38) !important;
+}
+
+/* 激活项：亮蓝渐变高亮块 */
+#aside .navi ul.nav > li.active > a,
+#aside ul.nav > li.active > a,
+#aside li.active > a {
+    background: linear-gradient(135deg, rgba(31, 123, 255, .95), rgba(10, 92, 232, .95)) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 18px rgba(31, 123, 255, .40) !important;
+}
+
+/* 子菜单（nav-sub）深色 */
+#aside ul.nav-sub,
+#aside .nav-sub {
+    background: rgba(5, 10, 20, .55) !important;
+    border-left: 1px solid rgba(255, 255, 255, .07) !important;
+    border-radius: 0 0 10px 10px;
+    margin: 0 8px 6px !important;
+}
+#aside .nav-sub li a,
+#aside ul.nav-sub > li > a {
+    color: rgba(255, 255, 255, .65) !important;
+    background: transparent !important;
+}
+#aside .nav-sub li a:hover,
+#aside ul.nav-sub > li > a:hover {
+    background: rgba(255, 255, 255, .07) !important;
+    color: #fff !important;
+}
+#aside .nav-sub li.active a,
+#aside ul.nav-sub > li.active > a {
+    background: linear-gradient(135deg, rgba(31, 123, 255, .85), rgba(10, 92, 232, .85)) !important;
+    color: #fff !important;
+    border-radius: 8px;
+}
+
+/* 子菜单展开箭头颜色 */
+#aside .navi ul.nav li a .pull-right i,
+#aside ul.nav li a .caret { color: rgba(255, 255, 255, .45) !important; border-top-color: rgba(255, 255, 255, .45) !important; }
+
+/* 13.4 面包屑白条修正（“帮助中心 / 平台首页”） */
+.breadcrumb,
+.bg-light.lter,
+.bg-light.lter.b-b,
+.wrapper-sm.bg-light,
+.app-content-body > .bg-light,
+.wrapper.bg-light {
+    background: rgba(255, 255, 255, .05) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    backdrop-filter: blur(14px) !important;
+    color: rgba(255, 255, 255, .75) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .08) !important;
+}
+.breadcrumb a, .breadcrumb li { color: rgba(255, 255, 255, .75) !important; }
+.breadcrumb > li + li::before { color: rgba(255, 255, 255, .35) !important; }
+
+/* 13.5 顶栏用户下拉头像区 */
+#header .dropdown-toggle { color: rgba(255, 255, 255, .85) !important; }
+#header .thumb-sm.avatar { border: 1px solid rgba(255, 255, 255, .25) !important; }
+
+/* ---------- 14. 选项卡 / 表单页 / 警告条深色玻璃（shop.php 等全部 panel 页） ---------- */
+
+/* 14.1 选项卡区（在线下单 / 查询订单） */
+.panel .nav-tabs,
+.nav-tabs {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .10) !important;
+}
+.nav-tabs > li > a {
+    background: transparent !important;
+    color: rgba(255, 255, 255, .55) !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    transition: all .18s ease;
+}
+.nav-tabs > li > a:hover {
+    background: rgba(255, 255, 255, .06) !important;
+    color: #fff !important;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    background: transparent !important;
+    color: #5b9dff !important;
+    border: none !important;
+    border-bottom: 2px solid #1f7bff !important;
+    box-shadow: 0 6px 14px -8px rgba(31, 123, 255, .60) !important;
+}
+.nav-tabs-alt { border-bottom: none !important; background: transparent !important; }
+
+/* 14.2 选项卡内容区 / panel-body 强制透化（根除白色残底） */
+.panel .tab-content,
+.tab-content,
+.tab-pane,
+.panel-body,
+.panel > div {
+    background: transparent !important;
+    color: #dfe6f2 !important;
+}
+
+/* 14.3 表单标签 / 文字可读性 */
+.panel-body label,
+.form-group label { color: rgba(255, 255, 255, .78) !important; }
+.help-block { color: rgba(255, 255, 255, .50) !important; }
+.radio label, .checkbox label { color: #dfe6f2 !important; }
+
+/* 14.4 输入组与搜索按钮 */
+.input-group .btn {
+    background: linear-gradient(135deg, #1f7bff, #0a5ce8) !important;
+    border: none !important;
+    color: #fff !important;
+}
+.input-group-btn .btn-default {
+    background: linear-gradient(135deg, #1f7bff, #0a5ce8) !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+/* 14.5 警告条：暗色玻璃 + 高对比文字（根除浅粉看不清） */
+.alert,
+.alert-warning,
+.alert-danger,
+.alert-info,
+.alert-success {
+    border-radius: 14px !important;
+    border: 1px solid rgba(255, 255, 255, .12) !important;
+    color: #f0d8c0 !important;
+}
+.alert-warning,
+.bg-warning {
+    background: linear-gradient(135deg, rgba(150, 105, 20, .30), rgba(120, 85, 15, .22)) !important;
+    border-color: rgba(232, 161, 60, .35) !important;
+    color: #f5d9a8 !important;
+}
+.alert-danger,
+.bg-danger {
+    background: linear-gradient(135deg, rgba(180, 45, 40, .30), rgba(140, 30, 28, .22)) !important;
+    border-color: rgba(255, 95, 87, .35) !important;
+    color: #ffb4ae !important;
+}
+.alert-info,
+.bg-info {
+    background: linear-gradient(135deg, rgba(30, 90, 180, .28), rgba(20, 65, 140, .20)) !important;
+    border-color: rgba(80, 150, 255, .35) !important;
+    color: #a8cdff !important;
+}
+.alert-success,
+.bg-success {
+    background: linear-gradient(135deg, rgba(35, 140, 80, .28), rgba(25, 105, 60, .20)) !important;
+    border-color: rgba(46, 204, 113, .35) !important;
+    color: #9ce8bc !important;
+}
+.alert a { color: inherit !important; text-decoration: underline; }
+
+/* 14.6 立即购买大按钮：红渐变 + 光晕 */
+.btn-danger,
+.btn.btn-danger,
+input.btn-danger {
+    background: linear-gradient(135deg, #ff5f57, #e0342b) !important;
+    border: none !important;
+    color: #fff !important;
+    box-shadow: 0 6px 20px rgba(255, 70, 60, .40) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+}
+.btn-danger:hover { filter: brightness(1.10) !important; }
+
+.btn-success,
+input.btn-success {
+    background: linear-gradient(135deg, #2ecc71, #1fa855) !important;
+    border: none !important;
+    color: #fff !important;
+    box-shadow: 0 6px 20px rgba(46, 204, 113, .35) !important;
+}
+
+/* 14.7 面包屑条内文字（“管理中心 / 自助下单”）已由13.4覆盖，补充链接 */
+.app-content-body .bg-light a { color: #5b9dff !important; }
+
+/* 14.8 通用表格在深色下的辅助 */
+.table-striped > tbody > tr:nth-child(odd) td { background: rgba(255, 255, 255, .035) !important; }
+#list td, #list2 td { color: #dfe6f2 !important; }
+
+/* ---------- 15. 底部白条 / 侧边栏灰块根除（最高特异性兜底） ---------- */
+/* 右下白色长条 = .app-content 容器白底；左下灰块 = 半透深色叠浅色内层。
+   全部不透明化 + html body 前缀反压，一次根除。 */
+
+/* 15.1 主容器全部透化（透出 body 深色渐变） */
+html body .app.app-header-fixed,
+html body .app-content,
+html body .app-content-body {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* 15.2 侧边栏整体不透明深色（杜绝半透叠浅发灰） */
+html body #aside.app-aside,
+html body aside#aside {
+    background-color: #0a1220 !important;
+    background-image: linear-gradient(180deg, rgba(13, 24, 44, .55), rgba(8, 14, 28, .85)) !important;
+}
+
+/* 侧边栏内层全部透化，统一由 #aside 提供底色 */
+html body #aside .aside-wrap,
+html body #aside .navi-wrap,
+html body #aside nav.navi {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* 清除 AppUI 侧边栏伪元素装饰（渐变残影/分隔线） */
+html body #aside::before,
+html body #aside::after,
+html body #aside .navi-wrap::before,
+html body #aside .navi-wrap::after,
+html body #aside .aside-wrap::before,
+html body #aside .aside-wrap::after {
+    display: none !important;
+}
+
+/* 15.3 body 自身垫底色（页面高度不足视口时也不露白） */
+html body {
+    background-color: #0a1220 !important;
+}
+
+/* 15.4 顶栏同样不透明化（防半透混色发灰） */
+html body #header.app-header.navbar {
+    background-color: rgba(8, 14, 28, .96) !important;
+}
+
+/* ---------- 16. 面包屑白条 → 深色渐变玻璃条（最高特异性） ---------- */
+html body .app-content .bg-light.lter,
+html body .app-content .bg-light.lter.b-b,
+html body .app-content-body .wrapper-sm.bg-light,
+html body .app-content-body .bg-light,
+html body #content .bg-light.lter,
+html body .bg-light.lter.b-b.wrapper-sm {
+    background-color: rgba(10, 18, 34, .88) !important;
+    background-image: linear-gradient(135deg, rgba(20, 34, 60, .60), rgba(13, 24, 44, .40)) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .08) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    backdrop-filter: blur(14px) !important;
+    color: rgba(255, 255, 255, .75) !important;
+}
+
+/* 面包屑文字 */
+html body .app-content .breadcrumb a,
+html body .app-content .breadcrumb li,
+html body .breadcrumb a,
+html body .breadcrumb li {
+    color: rgba(255, 255, 255, .75) !important;
+}
+html body .app-content .breadcrumb > li + li::before,
+html body .breadcrumb > li + li::before {
+    color: rgba(255, 255, 255, .35) !important;
+}
+html body .app-content .breadcrumb a:hover { color: #6db1ff !important; }
+
+/* 补漏：#content 与 padding/wrapper 白底透化（底部白条兜底） */
+html body #content,
+html body .app-content .padding,
+html body .app-content .wrapper,
+html body .app-content .padder {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* ---------- 17. 根元素画布深色化（底部白条终极根除） ---------- */
+/* 根因：body 渐变为 fixed 只绘制视口内；滚动后视口外露出 html 的白色画布。
+   让 html 使用与 body 同款深色流动渐变，白条与背景完全融合。 */
+html {
+    background-color: #0a1220 !important;
+    background-image: linear-gradient(135deg, #0a1220 0%, #0d1a30 30%, #0b1526 55%, #0e1c34 80%, #0a1220 100%) !important;
+    background-attachment: fixed !important;
+    background-size: 400% 400% !important;
+    animation: hw-dark-flow 26s ease-in-out infinite !important;
+    height: 100%;
+}
+
+/* 确保任何溢出滚动区域也无缝 */
+html body {
+    min-height: 100%;
+}
+
+/* ---------- 18. 底部白色横条终极根除（滚动条轨道 + 原生 UI 深色化） ---------- */
+/* 根因：白条是横向滚动条的白色轨道（页面有元素横向溢出），非页面元素。
+   三重保险：1) 隐藏横向溢出 2) color-scheme:dark 3) 全局滚动条深色化 */
+
+/* 18.1 禁止横向溢出 → 水平滚动条彻底消失 */
+html, body {
+    overflow-x: hidden !important;
+}
+
+/* 18.2 告知浏览器使用深色原生控件（滚动条/下拉框自动变深色） */
+:root {
+    color-scheme: dark !important;
+    -ms-color-scheme: dark !important;
+}
+
+/* 18.3 全局滚动条深色流光化（垂直+水平全覆盖） */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    width: 10px !important;
+    height: 10px !important;
+    background: #0a1220 !important;
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track {
+    background: #0a1220 !important;
+    border-radius: 5px;
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #1d3a66, #14284a) !important;
+    border-radius: 5px;
+    border: 2px solid #0a1220;
+}
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #2a5494, #1d3a66) !important;
+}
+html::-webkit-scrollbar-corner {
+    background: #0a1220 !important;
+}
+/* Firefox 滚动条 */
+* {
+    scrollbar-color: #1d3a66 #0a1220 !important;
+    scrollbar-width: thin !important;
+}
+
+/* ---------- 12. 移动端减负 ---------- */
+@media (max-width: 768px) {
+    .panel, .panel-default, .main-panel {
+        -webkit-backdrop-filter: saturate(140%) blur(12px);
+        backdrop-filter: saturate(140%) blur(12px);
+    }
+    .app-header.navbar { background: rgba(8, 14, 28, .94) !important; }
+}

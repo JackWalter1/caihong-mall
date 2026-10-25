@@ -1,0 +1,61 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+html body{
+    max-width: 600px;
+    margin: 0 auto;
+}
+.hometop{
+    padding-top: 10px;
+    width: 100%;
+    background: linear-gradient(180deg,#ff9552 0%,#ffa56a 60%,#f2f2f2 100%);
+}
+.tops{
+    margin:5px 26px;
+    display: flex;
+    justify-content: space-between;
+}
+.sitename{
+        display: flex;
+    align-items: center;
+}
+.sitename img{
+    width: 25px;
+}
+.sitename span{
+    font-weight: 550;
+}
+.kefu img{
+    width: 25px;
+}
+.ser{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:0 20px;
+    height: 1.825rem;
+    background: #FFFFFF;
+    border-radius: 1.0625rem;
+    padding: 0 0.3125rem 0 0.84375rem;
+    font-size: .9375rem;
+    color: #9b9fa8;
+}
+.ser img{
+    width: 16px;
+}
+.ser input{
+    height: 1.825rem;
+    line-height: 1.825rem;
+    font-size: 14px;
+    width: 70%;
+    border:0px;
+    outline: none;
+}
+.serbut{
+    padding: 0.1225rem 0.425rem;
+    background: linear-gradient(90deg,#FE8754 0%,#FE5F4D 100%);
+    border-radius: 1rem;
+    color: #fff;
+    font-size: 15px;
+}

@@ -1,0 +1,324 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据库配置 - <?=$config['siteName']?>安装</title>
+    <?php require_once ('step-base.html');?>
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-panel">
+                <div class="layui-card">
+                    <h1 class="install-h1">开始安装</h1>
+                    <div class="layui-card-body">
+                        <div class="layui-tabs-control">
+                            <div class="layui-tab-item layui-show">
+                                <div class="layui-row" >
+                                    <form class="layui-form" action="./install?s=install" >
+                                        <?php if ($msg): ?>
+                                        <div class="layui-error">
+                                            <?php echo $msg; ?>
+                                        </div>
+                                        <?php endif; ?>
+                                        <div class="layui-notice">
+                                            <div id="layui-error" style="display:none"></div>
+                                            <div id="layui-success" style="display:none"></div>
+                                            <div id="layui-warmtips" style="display:none"></div>
+                                        </div>
+                                        <div id="fun-box" style="">
+                                            <div class="layui-form-item form-main">
+                                                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                                                    <legend>数据库设置</legend>
+                                                </fieldset>
+			<font color="red">安装前请确保数据库是空的，否则出现问题勿与作者联系</font><br>
+			<font color="red">注意安装失败可能是因为PHP版本不是7.1或更高版本</font>
+                                                <div class="layui-form-item">
+                                                    <div class="layui-form-item">
+                                                        <label class="layui-form-label required">主机地址</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="text" name="hostname" class="layui-input" lay-verify="required"
+                                                                   placeholder="请输入主机地址" value="localhost">
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-form-item">
+                                                        <label class="layui-form-label required">数据库名</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="text" name="database" class="layui-input"
+                                                                   lay-verify="required" placeholder="请输入数据库名">
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-form-item">
+                                                        <label class="layui-form-label required">数据表前缀</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="text" name="prefix" value="shua" class="layui-input"
+                                                                   lay-verify="required" placeholder="请设置数据表前缀">
+                                                                   <font color="red">如果同一数据库运行多个<?=$config['siteName']?>可写不同的前缀</font>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="layui-form-item">
+                                                        <label class="layui-form-label required">用户名</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="text" name="username" value="" class="layui-input" lay-verify="required"
+                                                                   placeholder="请输入MYSQL用户名">
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-form-item">
+                                                        <label class="layui-form-label required">密码</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="password" name="password"  value="" class="layui-input" lay-verify="required"
+                                                                   placeholder="请输入数据库密码" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-form-item">
+                                                        <label class="layui-form-label required">端口</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="port" name="port" class="layui-input" lay-verify="required"
+                                                                   placeholder="MYSQL端口,一般为3306" value="3306" autocomplete="off">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="layui-form-item submit">
+                                                <a type="submit" class="layui-btn layui-btn-normal layui-btn-radius" href="./index.php?s=step2">上一步</a>
+                                                <button type="submit" class="layui-btn layui-btn-danger layui-btn-radius" lay-submit="" lay-filter="submit" style="text-align:center;">立即安装</button>
+                                                <a href="javascript:;" class="layui-btn layui-btn-primary layui-btn-radius layui-hide" id="next-step">下一步</a>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 加载条组件 -->
+                                        <div class="loading-container" id="loading-container">
+                                            <div class="loading-title">数据库安装进度</div>
+                                            <div class="loading-progress-bar">
+                                                <div class="loading-progress" id="loading-progress" style="width: 0%"></div>
+                                            </div>
+                                            <div class="loading-percentage" id="loading-percentage">0%</div>
+                                            <div class="loading-info" id="loading-info">
+                                                <!-- 安装过程信息将在这里显示 -->
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <div class="layui-footer footer">
+                                        <h5>Powered  <?=$config['siteName']?></h5>
+                                        <h6>版权所有 2020-<?php echo date("Y");?> © <?=$config['siteName']?></a></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    layui.use(['layer','jquery','form'],function (res) {
+        const layer = layui.layer,$ = layui.$,form=layui.form;
+        
+        // 安装步骤总数
+        const totalSteps = 8; // 总步骤数：连接数据库、创建数据库、执行主SQL、执行客服SQL、插入系统配置、创建config文件、创建锁文件、完成
+        let currentStep = 0;
+        
+        // 更新进度条函数
+        function updateProgress(step, message, type = 'process') {
+            currentStep = step;
+            const progress = Math.round((step / totalSteps) * 100);
+            $('#loading-progress').css('width', progress + '%');
+            $('#loading-percentage').text(progress + '%');
+            
+            // 添加消息到信息区域
+            const messageClass = type === 'success' ? 'success' : type === 'error' ? 'error' : 'process';
+            const infoHtml = `<p class="${messageClass}">${new Date().toLocaleTimeString()} - ${message}</p>`;
+            $('#loading-info').append(infoHtml);
+            
+            // 自动滚动到底部
+            const infoContainer = $('#loading-info')[0];
+            infoContainer.scrollTop = infoContainer.scrollHeight;
+        }
+        
+        // 监听提交
+        form.on('submit(submit)', function(data){
+            const that = $(this);
+            $('.layui-btn-radius').addClass('layui-hide');
+            that.text('安装中...').prop('disabled', true);
+            
+            // 显示加载条容器
+            $('#loading-container').show();
+            
+            // 初始化进度信息
+            $('#loading-info').html('');
+            
+            // 使用XMLHttpRequest实现实时进度更新
+            const xhr = new XMLHttpRequest();
+            const formData = new FormData();
+            
+            // 将表单数据转换为FormData
+            for (const key in data.field) {
+                if (data.field.hasOwnProperty(key)) {
+                    formData.append(key, data.field[key]);
+                }
+            }
+            
+            // 设置请求
+            xhr.open('POST', '', true);
+            
+            // 用于存储已处理的响应文本
+            let receivedText = '';
+            
+            // 监听readystatechange事件以实现实时进度
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 3 || xhr.readyState === 4) {
+                    const newText = xhr.responseText;
+                    const newLines = newText.substring(receivedText.length).split('\n');
+                    receivedText = newText;
+                    
+                    // 处理新接收到的每一行数据
+                    newLines.forEach(function(line) {
+                        line = line.trim();
+                        if (line.startsWith('progress:')) {
+                            const parts = line.replace('progress:', '').split('|');
+                            if (parts.length >= 2) {
+                                const step = parseFloat(parts[0]); // 使用parseFloat支持小数进度
+                                const message = parts[1];
+                                const type = parts.length > 2 ? parts[2] : 'process';
+                                
+                                // 检查是否表已存在
+                                if (type === 'exists') {
+                                    layer.confirm('检测到数据库中已存在表，继续安装将会清除已有数据并进行新安装。确定要继续吗？', {
+                                        title: '安装确认',
+                                        btn: ['确定继续', '取消'],
+                                        btn1: function(index) {
+                                            layer.close(index);
+                                            // 重新发送请求，添加force参数
+                                            const forceFormData = new FormData();
+                                            for (const key in data.field) {
+                                                if (data.field.hasOwnProperty(key)) {
+                                                    forceFormData.append(key, data.field[key]);
+                                                }
+                                            }
+                                            forceFormData.append('force', '1');
+                                            
+                                            // 重新发送请求
+                                            const forceXhr = new XMLHttpRequest();
+                                            forceXhr.open('POST', '', true);
+                                            
+                                            // 重置接收文本
+                                            receivedText = '';
+                                            
+                                            // 监听新请求的状态
+                                            forceXhr.onreadystatechange = function() {
+                                                if (forceXhr.readyState === 3 || forceXhr.readyState === 4) {
+                                                    const newForceText = forceXhr.responseText;
+                                                    const newForceLines = newForceText.substring(receivedText.length).split('\n');
+                                                    receivedText = newForceText;
+                                                    
+                                                    newForceLines.forEach(function(forceLine) {
+                                                        forceLine = forceLine.trim();
+                                                        if (forceLine.startsWith('progress:')) {
+                                                            const forceParts = forceLine.replace('progress:', '').split('|');
+                                                            if (forceParts.length >= 2) {
+                                                                const forceStep = parseFloat(forceParts[0]);
+                                                                const forceMessage = forceParts[1];
+                                                                const forceType = forceParts.length > 2 ? forceParts[2] : 'process';
+                                                                updateProgress(forceStep, forceMessage, forceType);
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            };
+                                            
+                                            forceXhr.onload = function() {
+                                                if (forceXhr.status === 200) {
+                                                    if (forceXhr.responseText && forceXhr.responseText.substr(0, 7) === 'success') {
+                                                        updateProgress(totalSteps, '安装完成！正在跳转到成功页面...', 'success');
+                                                        setTimeout(function() {
+                                                            window.location.href='./index.php?s=step4';
+                                                        }, 1500);
+                                                    } else {
+                                                        $('.layui-btn-radius').removeClass('layui-hide');
+                                                        that.text('重新安装').prop('disabled', false);
+                                                        $('#next-step').show();
+                                                    }
+                                                } else {
+                                                    updateProgress(currentStep, '安装失败: HTTP错误 ' + forceXhr.status, 'error');
+                                                    $('.layui-btn-radius').removeClass('layui-hide');
+                                                    that.text('重新安装').prop('disabled', false);
+                                                    $('#next-step').show();
+                                                }
+                                            };
+                                            
+                                            forceXhr.onerror = function() {
+                                                updateProgress(currentStep, '网络连接错误，请检查您的网络连接', 'error');
+                                                $('.layui-btn-radius').removeClass('layui-hide');
+                                                that.text('重新安装').prop('disabled', false);
+                                                $('#next-step').show();
+                                            };
+                                            
+                                            forceXhr.send(forceFormData);
+                                        },
+                                        btn2: function(index) {
+                                            layer.close(index);
+                                            // 恢复按钮状态
+                                            $('.layui-btn-radius').removeClass('layui-hide');
+                                            that.text('立即安装').prop('disabled', false);
+                                            $('#loading-container').hide();
+                                        }
+                                    });
+                                } else {
+                                    updateProgress(step, message, type);
+                                }
+                            }
+                        }
+                    });
+                }
+            };
+            
+            // 请求完成的处理
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    if (xhr.responseText && xhr.responseText.substr(0, 7) === 'success') {
+                        updateProgress(totalSteps, '安装完成！正在跳转到成功页面...', 'success');
+                        setTimeout(function() {
+                            window.location.href='./index.php?s=step4';
+                        }, 1500);
+                    } else {
+                        $('.layui-btn-radius').removeClass('layui-hide');
+                        that.text('重新安装').prop('disabled', false);
+                        $('#next-step').show();
+                    }
+                } else {
+                    updateProgress(currentStep, '安装失败: HTTP错误 ' + xhr.status, 'error');
+                    $('.layui-btn-radius').removeClass('layui-hide');
+                    that.text('重新安装').prop('disabled', false);
+                    $('#next-step').show();
+                }
+            };
+            
+            // 请求错误的处理
+            xhr.onerror = function() {
+                updateProgress(currentStep, '网络连接错误，请检查您的网络连接', 'error');
+                $('.layui-btn-radius').removeClass('layui-hide');
+                that.text('重新安装').prop('disabled', false);
+                $('#next-step').show();
+            };
+            
+            // 发送请求
+            xhr.send(formData);
+            
+            // 下一步按钮点击事件
+            $('#next-step').on('click', function() {
+                window.location.href = './index.php?s=step4';
+            });
+            
+            return false;
+        });
+
+    })
+</script>
+</body>
+</html>

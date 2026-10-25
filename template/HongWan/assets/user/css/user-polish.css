@@ -1,0 +1,579 @@
+/* ============================================================
+   后台 user 区美化 - Apple 风
+   ------------------------------------------------------------
+   覆盖 app.css 的旧紫色风格，添加苹果设计语言
+   不动 HTML 结构、不动 PHP 逻辑
+   回滚方法：删除 user/head.php 里这个 css 的 link 即可
+   ============================================================ */
+
+
+:root {
+    --apple-blue: #0a84ff;
+    --apple-blue-hover: #0070e0;
+    --apple-bg: #f5f5f7;
+    --apple-card-bg: #ffffff;
+    --apple-text: #1d1d1f;
+    --apple-text-secondary: #6e6e73;
+    --apple-border: rgba(0, 0, 0, 0.08);
+    --apple-divider: rgba(0, 0, 0, 0.06);
+    --apple-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+    --apple-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    --apple-radius: 14px;
+    --apple-radius-sm: 10px;
+    --apple-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ========== 1. 全局字体 + 背景 ========== */
+body, html, .app {
+    background-color: var(--apple-bg) !important;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "SF Pro Text",
+                 "PingFang SC", "Hiragino Sans GB",
+                 "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--apple-text);
+    letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+    font-weight: 600;
+}
+
+
+/* ========== 2. 顶部 navbar - 毛玻璃 ========== */
+.app-header.navbar,
+.app-header .navbar-header.bg-primary,
+.app-header .navbar-header.bg-dark,
+.app-header .navbar-header {
+    background-color: rgba(255, 255, 255, 0.78) !important;
+    background-image: none !important;
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--apple-divider) !important;
+    box-shadow: none !important;
+}
+
+.app-header .navbar-collapse,
+.app-header .navbar-collapse.bg-primary,
+.app-header .navbar-collapse.bg-white-only {
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: var(--apple-text) !important;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.navbar-brand i.fa-desktop {
+    color: var(--apple-blue) !important;
+}
+
+.app-header .navbar-nav > li > a,
+.app-header .navbar-nav .navbar-btn,
+.app-header .nav.navbar-nav.hidden-xs .btn {
+    color: var(--apple-text) !important;
+    background: transparent !important;
+    transition: background-color .2s var(--apple-ease);
+}
+
+.app-header .navbar-nav > li > a:hover,
+.app-header .navbar-nav .navbar-btn:hover {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+    color: var(--apple-text) !important;
+}
+
+.app-header .dropdown-toggle .caret {
+    color: var(--apple-text-secondary);
+}
+
+
+/* ========== 3. 侧边栏 ========== */
+.app-aside,
+.app-aside.bg-dark,
+.app-aside.bg-light,
+.app-aside.bg-light.dker {
+    background-color: #fbfbfd !important;
+    background-image: none !important;
+    border-right: 1px solid var(--apple-divider) !important;
+}
+
+.app-aside .aside-wrap,
+.app-aside .navi-wrap {
+    background: transparent !important;
+}
+
+.app-aside .navi .nav > li > a,
+.app-aside .nav > li > a {
+    color: var(--apple-text) !important;
+    transition: all .25s var(--apple-ease);
+    border-radius: 8px;
+    margin: 2px 8px;
+    padding: 10px 14px;
+    background: transparent !important;
+}
+
+.app-aside .nav > li > a:hover,
+.app-aside .nav > li > a:focus {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+    color: var(--apple-text) !important;
+    padding-left: 18px;
+}
+
+.app-aside .nav > li.active > a,
+.app-aside .nav > li > a.active {
+    background-color: rgba(10, 132, 255, 0.1) !important;
+    color: var(--apple-blue) !important;
+    font-weight: 500;
+}
+
+.app-aside .nav > li.active > a i,
+.app-aside .nav > li > a.active i,
+.app-aside .nav > li.active > a:hover i {
+    color: var(--apple-blue) !important;
+}
+
+.app-aside .nav > li > a i {
+    color: var(--apple-text-secondary);
+    transition: color .2s var(--apple-ease);
+    width: 18px;
+    text-align: center;
+}
+
+.app-aside .nav > li > a:hover i {
+    color: var(--apple-text);
+}
+
+/* 子菜单 */
+.app-aside .nav .nav-sub,
+.app-aside .nav .nav-sub.dk {
+    background-color: rgba(0, 0, 0, 0.02) !important;
+    background-image: none !important;
+    border-radius: 8px;
+    margin: 4px 8px;
+    padding: 4px 0;
+}
+
+.app-aside .nav-sub > li > a {
+    padding-left: 42px !important;
+    font-size: 13.5px;
+    color: var(--apple-text-secondary) !important;
+}
+
+.app-aside .nav-sub > li.active > a,
+.app-aside .nav-sub > li > a.active {
+    color: var(--apple-blue) !important;
+    background-color: transparent !important;
+}
+
+/* 分组标题（"导航"、"查询"、"其他"）*/
+.app-aside .text-muted.text-xs {
+    color: var(--apple-text-secondary) !important;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 11px;
+    padding: 8px 16px 4px;
+}
+
+
+/* ========== 4. 主内容区 ========== */
+.app-content,
+.app-content-body {
+    background-color: var(--apple-bg) !important;
+}
+
+
+/* ========== 5. 面包屑 ========== */
+.bg-light.lter,
+.bg-light.lter.b-b,
+.wrapper-sm.bg-light {
+    background-color: transparent !important;
+    background-image: none !important;
+    border-bottom: 1px solid var(--apple-divider) !important;
+}
+
+.breadcrumb {
+    background-color: transparent !important;
+    color: var(--apple-text-secondary);
+    font-size: 13.5px;
+}
+
+.breadcrumb > li > a,
+.breadcrumb a {
+    color: var(--apple-text-secondary);
+    transition: color .2s var(--apple-ease);
+}
+
+.breadcrumb > li > a:hover {
+    color: var(--apple-blue);
+}
+
+.breadcrumb > .active {
+    color: var(--apple-text);
+    font-weight: 500;
+}
+
+
+/* ========== 6. 卡片 panel ========== */
+.panel,
+.panel-default {
+    border-radius: var(--apple-radius) !important;
+    border: none !important;
+    background-color: var(--apple-card-bg);
+    box-shadow: var(--apple-shadow);
+    transition: box-shadow .35s var(--apple-ease);
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.panel:hover {
+    box-shadow: var(--apple-shadow-lg);
+}
+
+/* panel-heading 强制覆盖那个 #9999CC 紫色 */
+.panel-heading,
+.panel-heading.font-bold,
+.panel > .panel-heading[style] {
+    background: linear-gradient(135deg, #fafbfc 0%, #f4f6f9 100%) !important;
+    color: var(--apple-text) !important;
+    border-radius: var(--apple-radius) var(--apple-radius) 0 0 !important;
+    border-bottom: 1px solid var(--apple-divider);
+    padding: 14px 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-size: 15px;
+}
+
+.panel-body {
+    padding: 18px 22px;
+}
+
+.panel-footer {
+    background-color: #fafbfc;
+    border-top: 1px solid var(--apple-divider);
+    padding: 12px 20px;
+}
+
+
+/* ========== 7. 按钮 ========== */
+.btn {
+    border-radius: var(--apple-radius-sm);
+    transition: all .2s var(--apple-ease);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    border: none;
+    padding: 9px 18px;
+    font-size: 14px;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background: var(--apple-blue) !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover {
+    background: var(--apple-blue-hover) !important;
+    box-shadow: 0 6px 16px rgba(10, 132, 255, 0.25);
+}
+
+.btn-default {
+    background: rgba(0, 0, 0, 0.05) !important;
+    color: var(--apple-text) !important;
+    border: 1px solid var(--apple-border);
+}
+
+.btn-default:hover {
+    background: rgba(0, 0, 0, 0.08) !important;
+}
+
+.btn-success {
+    background: #34c759 !important;
+    color: #fff !important;
+}
+
+.btn-danger {
+    background: #ff3b30 !important;
+    color: #fff !important;
+}
+
+.btn-warning {
+    background: #ff9f0a !important;
+    color: #fff !important;
+}
+
+.btn-info {
+    background: #5ac8fa !important;
+    color: #fff !important;
+}
+
+
+/* ========== 8. 表单 ========== */
+.form-control {
+    border-radius: var(--apple-radius-sm);
+    border: 1px solid var(--apple-border);
+    transition: border-color .2s var(--apple-ease),
+                box-shadow .2s var(--apple-ease);
+    box-shadow: none;
+    padding: 10px 14px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    background-color: #fff;
+}
+
+.form-control:focus {
+    border-color: var(--apple-blue);
+    box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.12);
+}
+
+select.form-control {
+    height: 42px;
+    line-height: 1.5;
+    padding: 8px 14px;
+}
+
+.input-group-addon {
+    border: 1px solid var(--apple-border);
+    background-color: #f5f5f7;
+    color: var(--apple-text-secondary);
+    border-radius: var(--apple-radius-sm);
+}
+
+
+/* ========== 9. 表格 ========== */
+.table {
+    margin-bottom: 0;
+}
+
+.table > thead > tr > th {
+    font-weight: 600;
+    color: var(--apple-text-secondary);
+    border-bottom: 1px solid var(--apple-divider);
+    background-color: transparent;
+    padding: 12px 16px;
+    font-size: 13px;
+}
+
+.table > tbody > tr > td {
+    padding: 14px 16px;
+    border-top: 1px solid var(--apple-divider);
+    vertical-align: middle;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: transparent;
+}
+
+.table > tbody > tr {
+    transition: background-color .2s var(--apple-ease);
+}
+
+.table-hover > tbody > tr:hover,
+.table > tbody > tr:hover {
+    background-color: rgba(0, 0, 0, 0.025);
+}
+
+
+/* ========== 10. Alert ========== */
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 12px 18px;
+    font-size: 14px;
+}
+
+.alert-info {
+    background-color: rgba(10, 132, 255, 0.08);
+    color: #003d7a;
+}
+
+.alert-warning {
+    background-color: rgba(255, 159, 10, 0.1);
+    color: #7a4500;
+}
+
+.alert-danger {
+    background-color: rgba(255, 69, 58, 0.08);
+    color: #7a1c14;
+}
+
+.alert-success {
+    background-color: rgba(48, 209, 88, 0.1);
+    color: #0e5a23;
+}
+
+
+/* ========== 11. Dropdown 菜单 ========== */
+.dropdown-menu {
+    border-radius: 12px;
+    border: 1px solid var(--apple-divider);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12),
+                0 2px 8px rgba(0, 0, 0, 0.04);
+    padding: 6px;
+    margin-top: 8px;
+    background-color: #fff;
+}
+
+.dropdown-menu > li > a {
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--apple-text) !important;
+    transition: background-color .15s var(--apple-ease);
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    color: var(--apple-text) !important;
+}
+
+.dropdown-menu > .divider {
+    background-color: var(--apple-divider);
+    margin: 6px 0;
+}
+
+
+/* ========== 12. 头像 ========== */
+.thumb-sm.avatar img,
+.avatar img {
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 0, 0, 0.05);
+}
+
+.avatar .on {
+    background-color: #34c759 !important;
+}
+
+
+/* ========== 13. 模态框（如果有）========== */
+.modal-content {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--apple-divider);
+    padding: 18px 24px;
+}
+
+.modal-body {
+    padding: 20px 24px;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--apple-divider);
+    padding: 14px 24px;
+}
+
+
+/* ========== 14. 滚动条 ========== */
+@media (min-width: 769px) {
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.18);
+        border-radius: 4px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.28);
+        background-clip: padding-box;
+        border: 2px solid transparent;
+    }
+}
+
+
+/* ========== 15. 选中文本 ========== */
+::selection {
+    background-color: rgba(10, 132, 255, 0.2);
+    color: var(--apple-text);
+}
+
+
+/* ========== 16. Label / Badge ========== */
+.label,
+.badge {
+    border-radius: 999px;
+    font-weight: 500;
+    padding: 3px 9px;
+    font-size: 11.5px;
+}
+
+
+/* ========== 17. 移动端 ========== */
+@media (max-width: 768px) {
+    .panel {
+        margin-bottom: 14px;
+        border-radius: 12px !important;
+    }
+
+    .panel-heading,
+    .panel-heading.font-bold,
+    .panel > .panel-heading[style] {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .panel-body {
+        padding: 14px 16px;
+    }
+
+    .btn {
+        min-height: 40px;
+        padding: 10px 16px;
+    }
+
+    .form-control {
+        min-height: 42px;
+        font-size: 16px;  /* iOS 防止缩放 */
+    }
+
+    select.form-control {
+        height: 44px;
+    }
+
+    .table > tbody > tr > td,
+    .table > thead > tr > th {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    /* 触屏关闭 transform hover */
+    .btn:hover {
+        transform: none;
+    }
+
+    .panel:hover {
+        box-shadow: var(--apple-shadow);
+    }
+
+    /* 顶栏移动端不要毛玻璃（性能） */
+    .app-header.navbar {
+        background-color: rgba(255, 255, 255, 0.95) !important;
+    }
+}

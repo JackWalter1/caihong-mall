@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安装许可协议 - <?=$config['siteName']?>安装向导</title>
+    <?php require_once ('step-base.html');?>
+    <style>
+        .protocol {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #e6e6e6;
+            margin-top: 10px;
+        }
+        .protocol h3, .protocol h4 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .protocol p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .btn-box {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .btn-box a {
+            margin: 0 10px;
+            padding: 0 30px;
+        }
+        .layui-error {
+            padding: 10px 15px;
+            background-color: #fff2f0;
+            border: 1px solid #ffccc7;
+            color: #f5222d;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .agree.disabled {
+            background-color: #d9d9d9 !important;
+            border-color: #d9d9d9 !important;
+            color: rgba(0, 0, 0, 0.25) !important;
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-container">
+
+    <h1 class="install-h1"><?=$config['siteName']?> 安装向导</h1>
+    
+    <?php if(is_file($lockFile)):?>
+    <div class="layui-error">
+        系统检测到您已完成安装。如需重新安装，请先手动删除 install/install.lock 文件。
+    </div>
+    <?php endif;?>
+    
+    <blockquote class="layui-elem-quote">
+        <h2>开源项目使用许可协议</h2>
+        <p>感谢您选择使用本系统（以下简称"本系统"）。本系统为开源项目，仅供学习研究使用。在继续安装前，请仔细阅读并接受本许可协议的所有条款。</p>
+        <p style="margin-top:12px;padding:12px 16px;background:#f0f5ff;border-left:4px solid #5D87FF;border-radius:4px;line-height:1.8;color:#333;">
+            <strong>沃尔特网络科技工作室</strong><br>
+            官网：<a href="https://www.898fk.com" target="_blank" style="color:#5D87FF;">www.898fk.com</a><br>
+            作者：WalTerTeChStuDio (Jack Walter)【沃尔特科技工作室】<br>
+            QQ官方2群：<strong style="color:#5D87FF;">283737974</strong>
+        </p>
+        
+        <div class="protocol">
+            <h3>许可协议条款</h3>
+            
+            <h4>1. 免责声明条款</h4>
+            <p>1.1 在任何情况下，因使用本系统导致的任何违法违纪行为、法律责任、经济损失或法律纠纷，均由使用者独立承担全部责任，与原作者无任何关联。</p>
+            <p>1.2 原作者不对使用本系统所产生的任何直接或间接损失承担任何责任，包括但不限于利润损失、数据丢失、业务中断等。</p>
+            <p>1.3 使用者因使用本系统而导致的任何第三方索赔、诉讼或法律程序，均由使用者自行承担全部责任和费用，原作者不承担任何连带责任。</p>
+            
+            <h4>2. 风险承担条款</h4>
+            <p>2.1 使用者在使用本系统过程中，对于可能出现的程序错误（BUG）、数据泄露、数据丢失、系统入侵及其他安全问题，均由使用者自行承担全部风险和责任。</p>
+            <p>2.2 使用者应自行评估本系统的安全性和适用性，并采取必要的安全措施保护系统和数据安全。</p>
+            <p>2.3 原作者不对本系统的稳定性、安全性、可靠性或适用性作出任何明示或暗示的保证。</p>
+            
+            <h4>3. 使用范围限制条款</h4>
+            <p>3.1 本系统仅供个人学习、研究目的使用，严禁用于任何商业用途，包括但不限于直接商业使用、间接商业获利或作为商业产品的组成部分。</p>
+            <p>3.2 禁止将本系统或其修改版本用于任何形式的商业项目、外包项目或转售行为。</p>
+            <p>3.3 禁止利用本系统进行任何违法违规活动，包括但不限于赌博、色情、诈骗、侵犯他人权益等行为。</p>
+            
+            <h4>4. 技术支持声明</h4>
+            <p>4.1 原作者不对本系统提供任何形式的技术支持、维护服务或问题解答。</p>
+            <p>4.2 使用者在使用本系统过程中遇到的问题，应自行解决或寻求社区帮助。</p>
+            <p>4.3 原作者不承诺对系统进行更新、升级或修复BUG，但保留在适当时候进行改进的权利。</p>
+            
+            <h4>5. 协议接受条款</h4>
+            <p>5.1 使用者在下载、复制或使用本系统源码时，即视为已完整阅读、充分理解并无条件接受本协议的全部条款。</p>
+            <p>5.2 如使用者不同意本协议的任何条款，应立即停止使用本系统，并删除所有相关文件。</p>
+            <p>5.3 使用者的下载、安装或使用行为将被视为对本协议的接受和确认。</p>
+            
+            <h4>6. 知识产权条款</h4>
+            <p>6.1 原作者保留对本系统的全部知识产权，本协议不构成任何知识产权的转让或许可。</p>
+            <p>6.2 本系统的源代码受《中华人民共和国著作权法》及相关法律法规保护。</p>
+            <p>6.3 使用者可以在学习研究范围内对系统进行修改，但不得移除或修改原作者的版权声明和标识。</p>
+            <p>6.4 未经原作者书面许可，不得将本系统或其修改版本以任何形式发布、分发或转让。</p>
+            
+            <h4>7. 修改与终止条款</h4>
+            <p>7.1 原作者保留随时修改或终止本协议及源码分享的权利。</p>
+            <p>7.2 协议修改后，将通过项目官方渠道（如GitHub、博客等）进行通知，修改后的协议自发布之日起生效。</p>
+            <p>7.3 如使用者不同意修改后的协议，应停止使用本系统并删除所有相关文件。</p>
+            
+            <h4>8. 法律适用条款</h4>
+            <p>8.1 本协议的订立、执行和解释均适用中华人民共和国法律。</p>
+            <p>8.2 如因本协议发生争议，双方应友好协商解决；协商不成的，任何一方均可向原作者所在地有管辖权的人民法院提起诉讼。</p>
+            <p>8.3 本协议的任何条款因法律原因被认定为无效或不可执行，不影响其他条款的效力。</p>
+            
+            <p style="margin-top: 20px; font-weight: bold;">注：本项目中包含的第三方源码和二进制文件的版权信息另行标注。</p>
+            <p style="font-weight: bold;">原作者拥有本协议的最终解释权。</p>
+        </div>
+    </blockquote>
+    
+    <div class="btn-box">
+        <div class="btn-tip" style="color: #f5222d; margin-bottom: 15px; font-size: 14px;">
+            <i class="layui-icon layui-icon-tips"></i> 请完整阅读协议内容后才能点击"同意并继续"按钮
+        </div>
+        <a class="layui-btn layui-btn-warm layui-btn-radius" href="javascript:history.back();">返回</a>
+        <a class="layui-btn agree layui-btn-danger layui-btn-radius disabled" data-href="./index.php?s=step2">同意并继续</a>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    layui.use('layer', function() {
+        var layer = layui.layer;
+        var $ = layui.$;
+        
+        var protocolBox = $('.protocol');
+        var agreeBtn = $('.agree');
+        var btnTip = $('.btn-tip');
+        var hasScrolledToBottom = false;
+        
+        protocolBox.on('scroll', function() {
+            var scrollTop = $(this).scrollTop();
+            var scrollHeight = this.scrollHeight;
+            var clientHeight = this.clientHeight;
+            
+            if (scrollTop + clientHeight >= scrollHeight - 10) {
+                if (!hasScrolledToBottom) {
+                    hasScrolledToBottom = true;
+                    agreeBtn.removeClass('disabled');
+                    btnTip.html('<i class="layui-icon layui-icon-ok-circle"></i> 您已完整阅读协议内容，现在可以点击"同意并继续"按钮');
+                    btnTip.css('color', '#52c41a');
+                }
+            }
+        });
+        
+        $(document).on("click", '.agree:not(.disabled)', function() {
+            var _that = $(this);
+            window.location.href = _that.data('href');
+        });
+        
+        $(document).on("click", '.agree.disabled', function() {
+            layer.msg('请完整阅读协议内容后才能点击"同意并继续"按钮', {icon: 2, time: 2000});
+        });
+    });
+</script>

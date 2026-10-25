@@ -1,0 +1,508 @@
+<?php
+/**
+ * 自助开通分站 - 对标 hack.wetcs.cn 左右分栏风格
+ * 保留原分站开通逻辑 / 版本介绍 / 详细介绍模态，仅替换前端模板
+**/
+$is_defend=true;
+include("../includes/common.php");
+if($islogin2==1 && $userrow['power']>0){
+	@header('Content-Type: text/html; charset=UTF-8');
+	exit("<script language='javascript'>alert('您已开通过分站！');window.location.href='./';</script>");
+}elseif($conf['fenzhan_buy']==0){
+	@header('Content-Type: text/html; charset=UTF-8');
+	exit("<script language='javascript'>alert('当前站点未开启自助开通分站功能！');window.location.href='./';</script>");
+}
+
+if($is_fenzhan == true && $siterow['power']==2){
+	if($siterow['ktfz_price']>0)$conf['fenzhan_price']=$siterow['ktfz_price'];
+	if($conf['fenzhan_cost2']<=0)$conf['fenzhan_cost2']=$conf['fenzhan_price2'];
+	if($siterow['ktfz_price2']>0 && $siterow['ktfz_price2']>=$conf['fenzhan_cost2'])$conf['fenzhan_price2']=$siterow['ktfz_price2'];
+}
+$title='自助开通分站';
+
+$addsalt=md5(mt_rand(0,999).time());
+$_SESSION['addsalt']=$addsalt;
+$x = new \lib\hieroglyphy();
+$addsalt_js = $x->hieroglyphyString($addsalt);
+
+$kind = isset($_GET['kind'])?$_GET['kind']:0;
+
+if($is_fenzhan == true && $siterow['power']==2 && !empty($siterow['ktfz_domain'])){
+	$domains=explode(',',$siterow['ktfz_domain']);
+}else{
+	// 兜底：fenzhan_domain 为空时自动用主域名后缀
+if (empty($conf['fenzhan_domain'])) {
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $hostParts = explode('.', $host);
+    if (count($hostParts) >= 2) {
+        $tld = end($hostParts);
+        $second = prev($hostParts);
+        // 如果主域名类似 abc.wnttech.fun，分站后缀是 wnttech.fun
+        // 如果主域名类似 localhost，用 localhost
+        if (count($hostParts) >= 3) {
+            $conf['fenzhan_domain'] = '*.' . $second . '.' . $tld;
+        } else {
+            $conf['fenzhan_domain'] = '*.localhost';
+        }
+    } else {
+        $conf['fenzhan_domain'] = '*.localhost';
+    }
+}
+$domains=explode(',',$conf['fenzhan_domain']);
+}
+$select='';
+foreach($domains as $domain){
+	$select.='<option value="'.$domain.'">'.$domain.'</option>';
+}
+if(empty($select))showmsg('请先到后台分站设置，填写可选分站域名',3);
+
+// 设置CDN路径
+if($conf['cdnpublic']==1){
+	$cdnpublic = '//lib.baomitu.com/';
+}elseif($conf['cdnpublic']==2){
+	$cdnpublic = 'https://cdn.bootcdn.net/ajax/libs/';
+}elseif($conf['cdnpublic']==4){
+	$cdnpublic = '//s1.pstatp.com/cdn/expire-1-M/';
+}else{
+	$cdnpublic = '//lib.baomitu.com/';
+}
+$sitename = !empty($conf['sitename']) ? $conf['sitename'] : '用户中心';
+?>
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title><?php echo $title?> - <?php echo $sitename?></title>
+  <?php if(!empty($conf['favicon'])){echo '<link rel="icon" href="'.htmlspecialchars($conf['favicon']).'" type="image/x-icon" />';}?>
+  <link href="<?php echo $cdnpublic?>font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="<?php echo $cdnpublic?>twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/user/css/auth.css?v=20261017">
+
+<style>
+/* 自定义后缀输入框样式 */
+.auth-domain-input{
+  flex:1; min-width:120px;
+  height:42px; padding:0 12px;
+  border:1px solid var(--mc-border,#eef0f4);
+  border-radius:8px;
+  font-size:14px; color:#495057;
+  outline:none; transition:border-color .2s;
+}
+.auth-domain-input:focus{ border-color:#4e6ef2; box-shadow:0 0 0 3px rgba(78,110,242,.12); }
+.auth-domain-row select{ min-width:120px; }
+</style>
+
+</head>
+<body>
+<div class="auth-page">
+
+  <!-- 左侧蓝色插画面板 -->
+  <div class="auth-illustration">
+    <svg viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="cloudGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#8ec5ff" stop-opacity="0.9"/>
+          <stop offset="60%" stop-color="#4d9aff" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#0066FF" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="cubeTop" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#d6e8ff"/>
+        </linearGradient>
+        <linearGradient id="cubeLeft" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#9bc4f5"/>
+          <stop offset="100%" stop-color="#c5dcf7"/>
+        </linearGradient>
+        <linearGradient id="cubeRight" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#c5dcf7"/>
+          <stop offset="100%" stop-color="#7fb0ee"/>
+        </linearGradient>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- 透视网格地面 -->
+      <g stroke="#5aa0ff" stroke-width="1" opacity="0.35" fill="none">
+        <line x1="240" y1="420" x2="60" y2="200"/>
+        <line x1="240" y1="420" x2="420" y2="200"/>
+        <line x1="240" y1="420" x2="240" y2="180"/>
+        <line x1="100" y1="420" x2="380" y2="420"/>
+        <line x1="120" y1="380" x2="360" y2="380"/>
+        <line x1="140" y1="340" x2="340" y2="340"/>
+        <line x1="160" y1="300" x2="320" y2="300"/>
+        <line x1="180" y1="260" x2="300" y2="260"/>
+        <line x1="200" y1="220" x2="280" y2="220"/>
+        <line x1="150" y1="240" x2="330" y2="240"/>
+        <line x1="120" y1="290" x2="360" y2="290"/>
+        <line x1="90" y1="340" x2="390" y2="340"/>
+        <line x1="60" y1="390" x2="420" y2="390"/>
+      </g>
+
+      <!-- 顶部发光云脑 -->
+      <ellipse cx="240" cy="110" rx="130" ry="90" fill="url(#cloudGlow)" filter="url(#glow)"/>
+      <g fill="#bfe0ff" opacity="0.85">
+        <circle cx="180" cy="80" r="7"/><circle cx="210" cy="60" r="6"/>
+        <circle cx="250" cy="55" r="8"/><circle cx="290" cy="70" r="6"/>
+        <circle cx="310" cy="100" r="7"/><circle cx="270" cy="120" r="6"/>
+        <circle cx="220" cy="115" r="7"/><circle cx="170" cy="110" r="6"/>
+        <circle cx="150" cy="90" r="5"/><circle cx="320" cy="80" r="5"/>
+        <circle cx="240" cy="90" r="6"/>
+      </g>
+      <g stroke="#bfe0ff" stroke-width="1.5" opacity="0.5" fill="none">
+        <line x1="180" y1="80" x2="210" y2="60"/><line x1="210" y1="60" x2="250" y2="55"/>
+        <line x1="250" y1="55" x2="290" y2="70"/><line x1="290" y1="70" x2="310" y2="100"/>
+        <line x1="310" y1="100" x2="270" y2="120"/><line x1="270" y1="120" x2="220" y2="115"/>
+        <line x1="220" y1="115" x2="170" y2="110"/><line x1="170" y1="110" x2="150" y2="90"/>
+        <line x1="150" y1="90" x2="180" y2="80"/><line x1="180" y1="80" x2="240" y2="90"/>
+        <line x1="240" y1="90" x2="290" y2="70"/><line x1="240" y1="90" x2="220" y2="115"/>
+        <line x1="250" y1="55" x2="320" y2="80"/><line x1="320" y1="80" x2="310" y2="100"/>
+      </g>
+
+      <!-- 立方体 1（左前，大） -->
+      <g>
+        <polygon points="120,250 180,215 240,250 180,285" fill="url(#cubeTop)" stroke="#ffffff" stroke-width="1.5"/>
+        <polygon points="120,250 120,310 180,345 180,285" fill="url(#cubeLeft)" stroke="#8fbef0" stroke-width="1"/>
+        <polygon points="240,250 240,310 180,345 180,285" fill="url(#cubeRight)" stroke="#8fbef0" stroke-width="1"/>
+        <circle cx="180" cy="250" r="5" fill="#2A7AF3" filter="url(#glow)"/>
+      </g>
+
+      <!-- 立方体 2（右前，中） -->
+      <g>
+        <polygon points="260,280 310,252 360,280 310,308" fill="url(#cubeTop)" stroke="#ffffff" stroke-width="1.5"/>
+        <polygon points="260,280 260,330 310,358 310,308" fill="url(#cubeLeft)" stroke="#8fbef0" stroke-width="1"/>
+        <polygon points="360,280 360,330 310,358 310,308" fill="url(#cubeRight)" stroke="#8fbef0" stroke-width="1"/>
+        <circle cx="310" cy="280" r="4" fill="#2A7AF3" filter="url(#glow)"/>
+      </g>
+
+      <!-- 立方体 3（中间后，小） -->
+      <g>
+        <polygon points="195,205 230,185 265,205 230,225" fill="url(#cubeTop)" stroke="#ffffff" stroke-width="1.2"/>
+        <polygon points="195,205 195,245 230,265 230,225" fill="url(#cubeLeft)" stroke="#8fbef0" stroke-width="0.8"/>
+        <polygon points="265,205 265,245 230,265 230,225" fill="url(#cubeRight)" stroke="#8fbef0" stroke-width="0.8"/>
+      </g>
+
+      <!-- 立方体 4（左后，小） -->
+      <g>
+        <polygon points="80,220 110,203 140,220 110,237" fill="url(#cubeTop)" stroke="#ffffff" stroke-width="1"/>
+        <polygon points="80,220 80,255 110,272 110,237" fill="url(#cubeLeft)" stroke="#8fbef0" stroke-width="0.8"/>
+        <polygon points="140,220 140,255 110,272 110,237" fill="url(#cubeRight)" stroke="#8fbef0" stroke-width="0.8"/>
+      </g>
+
+      <!-- 立方体 5（最右，小） -->
+      <g>
+        <polygon points="360,235 385,221 410,235 385,249" fill="url(#cubeTop)" stroke="#ffffff" stroke-width="1"/>
+        <polygon points="360,235 360,262 385,276 385,249" fill="url(#cubeLeft)" stroke="#8fbef0" stroke-width="0.8"/>
+        <polygon points="410,235 410,262 385,276 385,249" fill="url(#cubeRight)" stroke="#8fbef0" stroke-width="0.8"/>
+      </g>
+
+      <!-- 浮动小立方粒子 -->
+      <g opacity="0.9">
+        <polygon points="150,320 165,312 180,320 165,328" fill="#ffffff" opacity="0.7"/>
+        <polygon points="330,320 345,312 360,320 345,328" fill="#ffffff" opacity="0.7"/>
+        <polygon points="100,340 112,333 124,340 112,347" fill="#ffffff" opacity="0.5"/>
+        <polygon points="370,345 382,338 394,345 382,352" fill="#ffffff" opacity="0.5"/>
+      </g>
+
+      <!-- 发光小点 -->
+      <g fill="#ffffff">
+        <circle cx="70" cy="150" r="3" opacity="0.6"/>
+        <circle cx="410" cy="160" r="3" opacity="0.5"/>
+        <circle cx="90" cy="280" r="2" opacity="0.5"/>
+        <circle cx="400" cy="290" r="2" opacity="0.5"/>
+        <circle cx="240" cy="170" r="2" opacity="0.6"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- 右侧表单面板 -->
+  <div class="auth-form-wrapper">
+    <div class="auth-topbar">
+      <a href="../" class="auth-logo">
+        <img src="<?php echo !empty($conf['logo']) ? htmlspecialchars($conf['logo']) : '../assets/img/logo.png' ?>" alt="logo">
+        <span class="auth-logo-text"><?php echo $sitename ?></span>
+      </a>
+      <a href="../" class="auth-go-back">平台首页</a>
+    </div>
+
+    <form class="auth-form">
+      <h2>自助开通分站</h2>
+      <p class="auth-header-info">开通分站，赚取差价提成！<a href="#about" data-toggle="modal">了解详情</a></p>
+
+      <!-- 分站版本 -->
+      <div class="auth-field">
+        <label>分站版本</label>
+        <select name="kind" class="form-control">
+          <option value="1" <?php if($kind==0){?>selected<?php }?>>普及版(<?php echo $conf['fenzhan_price']?>元)</option>
+          <option value="2" <?php if($kind==1){?>selected<?php }?>>专业版(<?php echo $conf['fenzhan_price2']?>元)</option>
+        </select>
+        <?php if($conf['fenzhan_regalert']){?><div class="auth-info-tip"><i class="fa fa-info-circle"></i>专业版可无限免费搭建下级网站并赚取下级提成，商品更便宜、利润更多！</div><?php }?>
+      </div>
+
+      <!-- 二级域名 -->
+      <div class="auth-field">
+        <label>二级域名</label>
+        <div class="auth-domain-row">
+          <input type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" name="qz" required data-parsley-length="[2,8]" placeholder="输入你想要的二级前缀">
+          <?php if($conf['fenzhan_regrand']){?><button type="button" class="auth-random-btn" onclick="$('[name=\'qz\']').val(Math.random().toString(36).substr(6))">随机</button><?php }?>
+          <!-- 后缀：既能下拉选也能自己填 -->
+          <input type="text" name="domain_input" id="domain_custom" class="auth-domain-input" placeholder="填写后缀 (如 wnttech.fun)" style="display:none;">
+          <select name="domain" id="domain_select">
+            <?php echo $select?>
+            <?php if(count(explode(',',$conf['fenzhan_domain']))<=1){?>
+            <option value="__custom__">✏️ 自定义后缀...</option>
+            <?php }?>
+          </select>
+          <script>
+          (function(){
+            var sel = document.getElementById('domain_select');
+            var inp = document.getElementById('domain_custom');
+            if(sel && inp){
+              sel.addEventListener('change', function(){
+                if(this.value === '__custom__'){
+                  inp.style.display = 'inline-block';
+                  inp.focus();
+                } else {
+                  inp.style.display = 'none';
+                }
+              });
+              // 表单提交时，如果选了自定义，把 input 值塞进 select
+              var form = inp.closest('form');
+              if(form){
+                form.addEventListener('submit', function(){
+                  if(sel.value === '__custom__' && inp.value.trim()){
+                    sel.innerHTML = '<option value="'+inp.value.trim()+'" selected>'+inp.value.trim()+'</option>';
+                  }
+                });
+              }
+            }
+          })();
+          </script>
+        </div>
+        <?php if($conf['fenzhan_regalert']){?><div class="auth-info-tip"><i class="fa fa-info-circle"></i>可用字母、数字，建议2-5字，不能有标点符号（尽量简短，便于推广宣传）！</div><?php }?>
+      </div>
+
+      <?php if(!$islogin2){?>
+      <!-- 管理账号 -->
+      <div class="auth-field">
+        <label>管理账号</label>
+        <input type="text" name="user" required placeholder="输入要注册的用户名">
+        <?php if($conf['fenzhan_regalert']){?><div class="auth-info-tip"><i class="fa fa-info-circle"></i>建议填写您的QQ号，方便记住！</div><?php }?>
+      </div>
+
+      <!-- 管理密码 -->
+      <div class="auth-field">
+        <label>管理密码</label>
+        <input type="password" name="pwd" id="sitepwd" required placeholder="输入管理员密码">
+        <button type="button" class="auth-pass-toggle" onclick="togglePass('sitepwd',this)" aria-label="显示密码"><i class="fa fa-eye-slash"></i></button>
+        <?php if($conf['fenzhan_regalert']){?><div class="auth-info-tip"><i class="fa fa-info-circle"></i>可以用字母或数字，密码不能低于6位！</div><?php }?>
+      </div>
+
+      <!-- 绑定QQ -->
+      <div class="auth-field">
+        <label>绑定ＱＱ</label>
+        <input type="number" name="qq" required data-parsley-length="[5,10]" placeholder="输入你的QQ号">
+        <?php if($conf['fenzhan_regalert']){?><div class="auth-info-tip"><i class="fa fa-info-circle"></i>输入您的QQ号，方便联系和找回密码！</div><?php }?>
+      </div>
+      <?php }?>
+
+      <!-- 网站名称 -->
+      <div class="auth-field">
+        <label>网站名称</label>
+        <input type="text" name="name" required data-parsley-length="[2,10]" placeholder="输入网站名称">
+        <?php if($conf['fenzhan_regalert']){?><div class="auth-info-tip"><i class="fa fa-info-circle"></i>例如：XX业务网，XX百货商城，自定义你想要的名字！</div><?php }?>
+      </div>
+
+      <input type="button" id="submit_buy" value="点此立即拥有分站" class="auth-submit"/>
+
+      <div class="auth-alt-links">
+        <a href="findpwd.php" class="auth-alt-outline"><i class="fa fa-unlock-alt"></i> 找回密码</a>
+        <a href="login.php" class="auth-alt-outline"><i class="fa fa-user"></i> 返回登录</a>
+      </div>
+
+      <p class="auth-copyright">Copyright © <?php echo date('Y') ?> <?php echo $sitename ?> All rights reserved.</p>
+    </form>
+  </div>
+
+</div>
+
+<!--分站介绍开始-->
+<div class="modal fade" align="left" id="userjs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title" id="myModalLabel">版本介绍</h4>
+		</div>
+		<div class="block">
+            <div class="table-responsive">
+                <table class="table table-borderless table-vcenter">
+                    <thead>
+                        <tr>
+                            <th style="width: 100px;">功能</th>
+                            <th class="text-center" style="width: 20px;">普及版/专业版</th>
+                        </tr>
+                    </thead>
+					<tbody>
+						<tr class="active">
+                            <td>专属商城平台</td>
+                            <td class="text-center">
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+							</td>
+                        </tr>
+						<tr class="success">
+                            <td>专属网站域名</td>
+                            <td class="text-center">
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+							</td>
+                        </tr>
+						<tr class="">
+                            <td>赚取用户提成</td>
+                            <td class="text-center">
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+							</td>
+                        </tr>
+						<tr class="info">
+                            <td>赚取下级分站提成</td>
+                            <td class="text-center">
+								<span class="btn btn-effect-ripple btn-xs btn-danger"><i class="fa fa-close"></i></span>
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+							</td>
+                        </tr>
+						<tr class="">
+                            <td>设置商品价格</td>
+                            <td class="text-center">
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+							</td>
+                        </tr>
+						<tr class="warning">
+                            <td>设置下级分站商品价格</td>
+                            <td class="text-center">
+								<span class="btn btn-effect-ripple btn-xs btn-danger"><i class="fa fa-close"></i></span>
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+							</td>
+                        </tr>
+						<tr class="">
+                            <td>搭建下级分站</td>
+                            <td class="text-center">
+								<span class="btn btn-effect-ripple btn-xs btn-danger"><i class="fa fa-close"></i></span>
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+							</td>
+                        </tr>
+						<tr class="danger">
+                            <td>赠送专属APP</td>
+                            <td class="text-center">
+								<span class="btn btn-effect-ripple btn-xs btn-danger"><i class="fa fa-close"></i></span>
+								<span class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-check"></i></span>
+							</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		</div>
+    </div>
+  </div>
+</div>
+<!--分站介绍结束-->
+
+<div class="modal fade" align="left" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title" id="myModalLabel">详细介绍</h4>
+		</div>
+		<div class="modal-body">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">分站是怎么获取收益的？</a>
+						</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse" style="height: 0px;" aria-expanded="false">
+						<div class="panel-body">
+							其实很简单，你只需要把你的分站域名发给你的用户让他下单，一旦下单付款成功，你的账户就会增加你所赚差价的金额，自己是可以设置销售价格的哦！
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" aria-expanded="false">赚到的钱在哪里？我如何得到？</a>
+						</h4>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse" style="height: 0px;" aria-expanded="false">
+						<div class="panel-body">
+							分站后台有完整的消费明细和余额信息，后台余额可供您在平台消费，满<?php echo $conf['tixian_min']; ?>元可以在后台提现到QQ钱包微信或者支付宝中。
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">需要我自己供货吗？哪来的商品货源？</a>
+						</h4>
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse" style="height: 0px;" aria-expanded="false">
+						<div class="panel-body">
+							所有商品全部由主站提供，您无需当心货源问题，所有订单由我们来处理，如果网站没有您想要的商品可联系主站客服添加即可！
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive" class="collapsed" aria-expanded="false">可以自己上架商品吗？可以修改售价吗？</a>
+						</h4>
+					</div>
+					<div id="collapseFive" class="panel-collapse collapse" style="height: 0px;" aria-expanded="false">
+						<div class="panel-body">
+							所有分站都不支持自己上架商品，但可以修改销售价格！
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseSix" class="collapsed" aria-expanded="false">那么多网站有分站，为什么选择你们呢？</a>
+						</h4>
+					</div>
+					<div id="collapseSix" class="panel-collapse collapse" style="height: 0px;" aria-expanded="false">
+						<div class="panel-body">
+							全网最专业的商城系统，商品齐全、货源稳定、价格低廉、售后保障。实体工作室运营，拥有丰富的人脉和资源，我们的货源全部精挑细选全网性价比最高的，实时掌握市场的动态，加入我们，只要你坚持，你不用担心不赚钱，不用担心货源不好，更不用担心我们跑路，我们即使不敢保证你月入上万，在网上赚个零花钱绝对没问题！
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+<script src="<?php echo $cdnpublic?>twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<?php echo $cdnpublic?>layer/2.3/layer.js"></script>
+<script>
+var hashsalt=<?php echo $addsalt_js?>;
+function togglePass(id,btn){
+  var el=document.getElementById(id);
+  var icon=btn.querySelector('i');
+  if(el.type==='password'){el.type='text';icon.className='fa fa-eye';}
+  else{el.type='password';icon.className='fa fa-eye-slash';}
+}
+</script>
+<script src="../assets/js/regsite.js?ver=<?php echo VERSION ?>"></script>
+</body>
+</html>

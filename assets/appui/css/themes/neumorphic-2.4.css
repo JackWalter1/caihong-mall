@@ -1,0 +1,372 @@
+/*
+ * Document   : neumorphic.css
+ * Author     : neumorphic design
+ */
+/* 新拟态主题基础变量 */
+:root {
+    --neumorphic-bg: #e0e5ec;
+    --neumorphic-text: #374249;
+    --neumorphic-primary: #45a7b9;
+    --neumorphic-dark: #374249;
+    --neumorphic-light: #ffffff;
+    --neumorphic-shadow-light: rgba(255, 255, 255, 0.8);
+    --neumorphic-shadow-dark: rgba(163, 177, 198, 0.7);
+}
+
+/* 全局样式 */
+body {
+    background-color: var(--neumorphic-bg);
+    color: var(--neumorphic-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 新拟态元素基础样式 */
+.neumorphic,
+.widget,
+.navbar,
+.sidebar,
+.btn,
+.form-control,
+.dropdown-menu {
+    background: var(--neumorphic-bg);
+    border-radius: 12px;
+    box-shadow: 8px 8px 16px var(--neumorphic-shadow-dark),
+                -8px -8px 16px var(--neumorphic-shadow-light);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+/* 新拟态凹陷样式 */
+.neumorphic-inset,
+.form-control:focus,
+.active > .neumorphic,
+.btn:active,
+.btn:focus,
+.btn:hover,
+.dropdown-menu {
+    box-shadow: inset 4px 4px 8px var(--neumorphic-shadow-dark),
+                inset -4px -4px 8px var(--neumorphic-shadow-light);
+}
+
+/* 导航栏样式 */
+.navbar {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.navbar-nav > li > a {
+    color: var(--neumorphic-text);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus,
+.navbar-nav > li.active > a {
+    color: var(--neumorphic-primary);
+    background: var(--neumorphic-bg);
+    box-shadow: inset 4px 4px 8px var(--neumorphic-shadow-dark),
+                inset -4px -4px 8px var(--neumorphic-shadow-light);
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    padding: 20px;
+}
+
+.sidebar-nav a {
+    color: var(--neumorphic-text);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a:focus,
+.sidebar-nav a.active {
+    color: var(--neumorphic-primary);
+    background: var(--neumorphic-bg);
+    box-shadow: inset 4px 4px 8px var(--neumorphic-shadow-dark),
+                inset -4px -4px 8px var(--neumorphic-shadow-light);
+}
+
+/* 小部件样式 */
+.widget {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.widget-content {
+    padding: 15px;
+}
+
+.widget-heading {
+    margin: 0 0 15px 0;
+    color: var(--neumorphic-dark);
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 10px 20px;
+    color: var(--neumorphic-text);
+    background: var(--neumorphic-bg);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    color: var(--neumorphic-light);
+    background: var(--neumorphic-primary);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* 表单样式 */
+.form-control {
+    padding: 12px 15px;
+    height: 42px;
+    line-height: 1.5;
+    color: var(--neumorphic-text);
+    background: var(--neumorphic-bg);
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* 专门针对select元素的样式 - 强制覆盖所有默认样式 */
+select.form-control {
+    padding: 12px 15px !important;
+    height: auto !important;
+    min-height: 50px !important;
+    line-height: 1.8 !important;
+    vertical-align: middle !important;
+    display: inline-block !important;
+    font-size: 14px !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+    /* 移除浏览器默认的select箭头样式 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* 为所有表单控件设置统一的最小高度 */
+.form-control {
+    min-height: 50px !important;
+    padding: 12px 15px !important;
+    line-height: 1.8 !important;
+    font-size: 14px !important;
+}
+
+/* 修复下拉选项的显示问题 */
+select.form-control option {
+    padding: 8px 12px;
+    line-height: 1.5;
+    background: var(--neumorphic-bg);
+    color: var(--neumorphic-text);
+}
+
+.form-control:focus {
+    outline: none;
+    color: var(--neumorphic-primary);
+}
+
+/* 卡片样式 - 适用于统计卡片等 */
+.col-xs-6.col-lg-4 > a.widget {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.col-xs-6.col-lg-4 > a.widget:hover {
+    transform: translateY(-5px);
+}
+
+.col-xs-6.col-lg-4 > a.widget .widget-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    box-shadow: 4px 4px 8px var(--neumorphic-shadow-dark),
+                -4px -4px 8px var(--neumorphic-shadow-light);
+}
+
+/* 标签页样式 */
+.nav-tabs > li > a {
+    color: var(--neumorphic-text);
+    background: var(--neumorphic-bg);
+    border: none;
+    border-radius: 8px 8px 0 0;
+    margin-right: 5px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    color: var(--neumorphic-primary);
+    background: var(--neumorphic-bg);
+    box-shadow: inset 4px 4px 8px var(--neumorphic-shadow-dark),
+                inset -4px -4px 8px var(--neumorphic-shadow-light);
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color: var(--neumorphic-primary);
+    background: var(--neumorphic-bg);
+    box-shadow: inset 4px 4px 8px var(--neumorphic-shadow-dark),
+                inset -4px -4px 8px var(--neumorphic-shadow-light);
+}
+
+/* 下拉菜单样式 */
+.dropdown-menu {
+    padding: 10px 0;
+    min-width: 180px;
+    border: none;
+}
+
+.dropdown-menu > li > a {
+    color: var(--neumorphic-text);
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    color: var(--neumorphic-primary);
+    background: var(--neumorphic-bg);
+    box-shadow: inset 2px 2px 4px var(--neumorphic-shadow-dark),
+                inset -2px -2px 4px var(--neumorphic-shadow-light);
+}
+
+/* 表格样式 */
+.table {
+    background: var(--neumorphic-bg);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+    border: none;
+}
+
+.table th {
+    background: var(--neumorphic-bg);
+    color: var(--neumorphic-dark);
+    font-weight: 600;
+}
+
+.table tr:hover {
+    background: var(--neumorphic-bg);
+    box-shadow: inset 0 0 10px rgba(163, 177, 198, 0.3);
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--neumorphic-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neumorphic-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0088a1;
+}
+
+/* 加载动画 */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--neumorphic-shadow-light);
+    border-top: 3px solid var(--neumorphic-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 响应式调整 */
+@media (max-width: 767px) {
+    .neumorphic,
+    .widget,
+    .navbar,
+    .sidebar,
+    .btn,
+    .form-control,
+    .dropdown-menu {
+        box-shadow: 4px 4px 8px var(--neumorphic-shadow-dark),
+                    -4px -4px 8px var(--neumorphic-shadow-light);
+    }
+    
+    .neumorphic-inset,
+    .form-control:focus,
+    .active > .neumorphic,
+    .btn:active,
+    .btn:focus,
+    .btn:hover,
+    .dropdown-menu {
+        box-shadow: inset 2px 2px 4px var(--neumorphic-shadow-dark),
+                    inset -2px -2px 4px var(--neumorphic-shadow-light);
+    }
+}
+
+/* 灰色或黑色背景上的span元素文字样式 */
+.dark-bg span,
+.bg-gray span,
+.bg-dark span,
+.navbar-inverse span,
+.sidebar-dark span,
+.dark-sidebar span,
+.sidebar-dark-bg span,
+[style*="background-color: #374249"] span,
+[style*="background-color: #374249"] .sidebar-nav-mini-hide,
+.navbar-inverse .sidebar-nav-mini-hide,
+.sidebar-dark .sidebar-nav-mini-hide,
+.dark-sidebar .sidebar-nav-mini-hide,
+.sidebar-dark-bg .sidebar-nav-mini-hide {
+    color: var(--neumorphic-light) !important;
+}
+
+/* 侧边栏特定样式增强 */
+.sidebar-nav [class*="sidebar-nav-mini-hide"] {
+    color: var(--neumorphic-text);
+}
+
+.navbar-inverse .sidebar-nav [class*="sidebar-nav-mini-hide"],
+.sidebar-dark .sidebar-nav [class*="sidebar-nav-mini-hide"],
+.dark-sidebar .sidebar-nav [class*="sidebar-nav-mini-hide"],
+.sidebar-dark-bg .sidebar-nav [class*="sidebar-nav-mini-hide"] {
+    color: var(--neumorphic-light) !important;
+}

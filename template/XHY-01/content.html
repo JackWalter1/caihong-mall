@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彩虹云商城 - 购前必看</title>
+    
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Alibaba Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+        
+        :root {
+            --primary: #2e86de; /* 主蓝色 */
+            --primary-light: #eaf3ff;
+            --secondary: #54a0ff; /* 亮蓝色 */
+            --dark: #1f2329;
+            --gray: #5a626d;
+            --light-gray: #f5f7fa;
+            --border: #e8edf5;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --warning: #ff9c00;
+            --danger: #ff4d4f;
+            --success: #0acf83;
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --card-hover: 0 4px 16px rgba(46, 134, 222, 0.08);
+        }
+        
+        body {
+            background-color: #f5f8fc;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* 顶部导航 */
+        .navbar {
+            background: rgba(255,255,255,.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(31, 35, 41, 0.06);
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            padding: 20px 0;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        /* 页面头部 */
+        .page-header {
+            background: linear-gradient(135deg, #2e86de 0%, #54a0ff 50%, #74b9ff 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(46, 134, 222, 0.22);
+        }
+        .page-header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(255,255,255,.18), transparent 50%);
+            pointer-events: none;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+        }
+        
+        .page-header h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .page-header p {
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* 警告横幅 */
+        .warning-banner {
+            background: linear-gradient(135deg, #fff8eb 0%, #fff3e0 100%);
+            border-left: 4px solid #ff9c00;
+            border-radius: 0 12px 12px 0;
+            padding: 16px 20px;
+            margin: 25px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: 0 4px 14px rgba(255, 156, 0, 0.08);
+        }
+        
+        .warning-banner i {
+            color: var(--warning);
+            font-size: 20px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        .warning-banner .content {
+            font-size: 14px;
+        }
+        
+        .warning-banner .content strong {
+            color: var(--warning);
+        }
+        
+        /* 内容卡片 */
+        .section-card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(31, 35, 41, 0.06);
+            margin-bottom: 18px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+            border: 1px solid var(--border);
+        }
+        .section-card:hover {
+            box-shadow: 0 12px 30px rgba(46, 134, 222, 0.12);
+            border-color: #c4d8f0;
+            transform: translateY(-4px);
+        }
+        
+        .card-header {
+            padding: 18px 22px;
+            background: linear-gradient(to right, #f0f6ff, #eaf3ff);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .card-header h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-header h2 i {
+            color: var(--primary);
+            font-size: 16px;
+        }
+        
+        .card-header .btn-details {
+            background: linear-gradient(135deg, #2e86de 0%, #54a0ff 100%);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(46, 134, 222, 0.25);
+            letter-spacing: .5px;
+        }
+        .card-header .btn-details:hover {
+            background: linear-gradient(135deg, #1a6fc4 0%, #2e86de 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(46, 134, 222, 0.35);
+        }
+        
+        .card-content {
+            padding: 20px 25px;
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        .card-content h3 {
+            font-size: 15px;
+            margin: 18px 0 10px;
+            color: var(--primary);
+            font-weight: 600;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .card-content ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        .card-content li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        
+        /* 辅助类型网格 */
+        .type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        
+        .type-card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            transition: all 0.25s cubic-bezier(.2,.8,.2,1);
+            box-shadow: 0 3px 12px rgba(31, 35, 41, 0.05);
+            border-left: 4px solid #2e86de;
+        }
+        .type-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(46, 134, 222, 0.12);
+            border-color: #c4d8f0;
+        }
+        
+        .type-card h3 {
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .type-card h3 i {
+            color: var(--primary);
+        }
+        
+        .type-card p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        /* 问题解决方案 */
+        .solution-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: var(--light-gray);
+            border-radius: 4px;
+            border-left: 3px solid var(--success);
+            box-shadow: var(--card-shadow);
+        }
+        
+        .solution-item.warning {
+            border-left-color: var(--warning);
+        }
+        
+        .solution-item h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution-item h4 i {
+            font-size: 16px;
+        }
+        
+        /* 模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 18px;
+            width: 90%;
+            max-width: 780px;
+            max-height: 88vh;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+            animation: modalIn 0.35s cubic-bezier(.2,.8,.2,1);
+            border: none;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(24px) scale(.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        .modal-header {
+            padding: 20px 26px;
+            border-bottom: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #2e86de 0%, #54a0ff 100%);
+            flex-shrink: 0;
+        }
+        .modal-header h2 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: .5px;
+        }
+        .modal-header h2 i { color: #fff; }
+        .modal-header .close {
+            background: rgba(255,255,255,.18);
+            border: none;
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+        .modal-header .close:hover {
+            background: rgba(255,255,255,.32);
+            color: #fff;
+        }
+        
+        .modal-body {
+            padding: 24px 26px;
+            font-size: 14.5px;
+            color: #4a5360;
+            line-height: 1.85;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .modal-body h3 {
+            font-size: 15px;
+            margin: 22px 0 12px;
+            color: #2e86de;
+            font-weight: 700;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaf3ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-body h3::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background: linear-gradient(180deg, #2e86de, #54a0ff);
+            border-radius: 2px;
+        }
+        .modal-body h4 {
+            font-size: 14px;
+            margin: 16px 0 8px;
+            color: #3d4654;
+            font-weight: 600;
+        }
+        .modal-body ul {
+            padding-left: 0;
+            margin: 12px 0;
+            list-style: none;
+        }
+        .modal-body li {
+            margin-bottom: 10px;
+            padding-left: 18px;
+            position: relative;
+        }
+        .modal-body li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #54a0ff;
+            font-size: 12px;
+        }
+        .modal-body .note {
+            background: #f0f7ff;
+            border-left: 3px solid #2e86de;
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            color: #3d4654;
+        }
+        
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--gray);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .footer p {
+            margin-bottom: 8px;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .navbar-content {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                padding: 10px 0;
+            }
+            
+            .page-header {
+                padding: 30px 15px;
+            }
+            
+            .page-header h1 {
+                font-size: 22px;
+            }
+            
+            .page-header p {
+                font-size: 14px;
+            }
+            
+            .type-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .card-header .btn-details {
+                align-self: flex-start;
+            }
+        }
+        
+        /* 装饰元素 */
+        .decoration {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.05;
+            font-size: 10rem;
+            color: var(--primary);
+        }
+        
+        .dec-1 {
+            top: 10%;
+            left: 5%;
+            transform: rotate(-20deg);
+        }
+        
+        .dec-2 {
+            bottom: 10%;
+            right: 5%;
+            transform: rotate(15deg);
+        }
+    </style>
+<input type="hidden" id="_o_dbjbempljhcmhlfpfacalomonjpalpko" data-inspect-config="7"><script type="text/javascript" src="chrome-extension://odphnbhiddhdpoccbialllejaajemdio/scripts/inspector.js"></script></head>
+<body>
+    <!-- 装饰元素 -->
+    <div class="decoration dec-1">
+        <i class="fas fa-shield-alt"></i>
+    </div>
+    <div class="decoration dec-2">
+        <i class="fas fa-gamepad"></i>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>彩虹云商城</span>
+            </div>
+            <div class="nav-links">
+                <a href="https://wap.365faka.top/ds/content.html#" class="active">用户协议</a>
+                <a href="/">返回网站</a>
+                <a href="/">联系客服</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- 页面头部 -->
+        <header class="page-header">
+            <h1>彩虹云商城下单协议及使用教程</h1>
+            <p>请在使用前仔细阅读以下条款和指南，下单即表示您已完全理解并同意所有协议内容</p>
+        </header>
+        
+        <!-- 警告横幅 -->
+        <div class="warning-banner">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="content">
+                <strong>重要提示：</strong> 任何辅助100%导致账号封禁甚至未使用就封禁，华为/荣耀/vivo及冷门机型不适用本站辅助！安卓15系统可能不兼容！
+            </div>
+        </div>
+
+        <!-- 下单条约 -->
+        <div class="section-card" style="transform: translateY(0px); box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 8px;">
+            <div class="card-header" onclick="openModal(&#39;modal-terms&#39;)">
+                <h2><i class="fas fa-file-contract"></i> 一、下单条约</h2>
+                <button class="btn-details">查看详情</button>
+            </div>
+            <div class="card-content">
+                <div>
+                    <li><strong>《用户默认协议条款》</strong> 购前必看，下单默认已读并接受</li>
+                    <li><strong>《彩虹云商城使用须知》</strong> 相关注意事项须知，避免踩雷</li>
+                    <li><strong>《彩虹云商城下单指导》</strong> 一个萝卜一个洞，根据设备对号入座</li>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 售后范围 -->
+        <div class="section-card">
+            <div class="card-header" onclick="openModal(&#39;modal-after-sale&#39;)">
+                <h2><i class="fas fa-headset"></i> 二、售后范围</h2>
+                <button class="btn-details">查看详情</button>
+            </div>
+            <div class="card-content">
+                <h3>《售后政策说明》</h3>
+                <div>
+                    <li><strong>申明：</strong> 非卡密问题不退不换！</li>
+                    <li>平台不提供软件使用教程，请自行研究使用</li>
+                    <li>客服仅尽力协助，不承诺100%解决问题</li>
+                    <li>在售后范围内的需在当天24点前联系客服处理</li>
+                </div>
+                
+                <h3 style="margin-top: 15px; color: var(--danger);">《非售后范围》</h3>
+                <div>
+                    <li>下错单/闪退/拉闸/兼容问题</li>
+                    <li>不会使用/使用不适/开发商跑路</li>
+                    <li>各类账号（游戏号/TG号）的直接售后</li>
+                    <li>代刷业务以及所有非卡密问题</li>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 辅助类型 -->
+        <div class="section-card">
+            <div class="card-header" onclick="openModal(&#39;modal-types&#39;)">
+                <h2><i class="fas fa-mobile-alt"></i> 三、辅助类型</h2>
+                <button class="btn-details">查看详情</button>
+            </div>
+            <div class="card-content">
+                <div>
+                    <li>安卓一体直装</li>
+                    <li>安卓容器/分身直装</li>
+                    <li>安卓Root插件</li>
+                    <li>安卓Root内核</li>
+                    <li>iOS免越狱/越狱</li>
+                    <li>PC、模拟器</li>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 通用教程 -->
+        <div class="section-card">
+            <div class="card-header" onclick="openModal(&#39;modal-tutorial&#39;)">
+                <h2><i class="fas fa-book-open"></i> 四、通用教程</h2>
+                <button class="btn-details">查看详情</button>
+            </div>
+            <div class="card-content">
+                <div>
+                    <li>项目下载保存指引</li>
+                    <li>项目打开方法指引</li>
+                    <li>安卓手游辅助通用教程</li>
+                    <li>iOS手游辅助通用教程</li>
+                    <li>PC/模拟器端游通用教程</li>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 其他问题 -->
+        <div class="section-card">
+            <div class="card-header" onclick="openModal(&#39;modal-other&#39;)">
+                <h2><i class="fas fa-question-circle"></i> 五、常见问题</h2>
+                <button class="btn-details">查看详情</button>
+            </div>
+            <div class="card-content">
+                <div>
+                    <li>支付成功后显示未支付？</li>
+                    <li>查询订单出现显示待处理？</li>
+                    <li>安装app软件报毒无法安装？</li>
+                    <li>辅助刚上来使用就封号？</li>
+                    <li>登录提示非正版应用/签名不一致？</li>
+                    <li>卡密不存在/错误类问题？</li>
+                    <li>机器码错误/设备绑定问题?</li>
+                    <li>国际服地铁提示英文代码？</li>
+                    <li>关于sh后缀文件怎么操作？</li>
+                    <li>iOS免越狱问题及安装方法？</li>
+                    <li>DY/KS代刷业务不到账/漏量？</li>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>© <script>document.write(new Date().getFullYear())</script> 彩虹云商城 | 请合理使用平台服务，遵守平台规则</p>
+            <p>下单即表示您已完全阅读、理解并同意以上所有条款和条件</p>
+        </div>
+    </div>
+    
+    <!-- 模态框 - 下单条约 -->
+    <div id="modal-terms" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-file-contract"></i> 下单条约详细内容</h2>
+                <button class="close" onclick="closeModal(&#39;modal-terms&#39;)">×</button>
+            </div>
+            <div class="modal-body">
+                <h3 style="color: var(--danger);">用户默认协议条款</h3>
+                <div>
+                    <li>下单默认已确认商品介绍的网盘内容并<strong style="color: var(--danger);">会使用</strong>，使用问题与平台无关全权由个人自行承担。</li>
+                    <li>下单默认接受项目以<strong style="color: var(--danger);">实际到手效果</strong>为准进行体验，允许部分商品由于更新出入导致部分功能未能落实。</li>
+                    <li>下单默认知晓未成年人禁止下单、并承诺本人已成年，所有消费后果由个人承担。</li>
+                    <li>下单默认同辅助导致账号封禁<strong style="color: var(--danger);">（甚至没有使用就封禁）</strong>的后果，概不退换，任何的封禁与平台无关。</li>
+                    <li>下单默知悉所购买的<strong style="color: var(--danger);">游戏账号大概率无法使用</strong>，并且清楚知晓寻找该对应商品介绍的客服协助售后处理</li>
+                    <li>下单默知悉<strong style="color: var(--danger);">抖音/快手/QQ/代充等所有代刷业务</strong>为非本站自营，<strong style="color: var(--danger);">漏单/掉单/漏量/掉量均无任何售后</strong>，介意禁止下单</li>
+                </div>
+                
+                <div class="note">
+                    <i class="fas fa-info-circle"></i> 本站所有项目均为全网收集，为维护您的权益，若无法接受以上请立即停止交易！下单默认遵守上述条约，由买家承担所有责任。
+                </div>
+                
+                <h3 style="color: var(--danger);">彩虹云商城使用须知</h3>
+                <div>
+                    <li><strong style="color: var(--danger);">任何辅助均会导致账号直接封禁甚至没有使用就会封禁！</strong>建议搭配防封端口使用<strong style="color: var(--danger);">（但不能彻底解决封号问题）</strong></li>
+                    <li>手游的<strong style="color: var(--danger);">安卓15设备</strong>大部分不兼容本站所有的辅助，使用中的闪退、安装失败、无法打开等问题需<strong style="color: var(--danger);">自行承担</strong></li>
+                    <li><strong style="color: var(--danger);">华为、荣耀、vivo</strong>机型不适用本站任何辅助，禁止购买使用，否则个人承担一切后果</li>
+                </div>
+                
+                <h3 style="color: var(--danger);">彩虹云商城下单指导</h3>
+                <div>
+                    <li>安卓手机无ROOT用户： 仅可使用标记有<strong style="color: var(--danger);">"直装、改文件"</strong>的商品</li>
+                    <li>安卓手机有ROOT用户： 可使用标记<strong style="color: var(--danger);">"插件、内核、内部"</strong>商品</li>
+                    <li>iOS苹果用户： 没越狱就购买标有<strong style="color: var(--danger);">"免越狱"</strong>，已越狱就购买标有<strong style="color: var(--danger);">"越狱"</strong>的商品</li>
+                    <li>PC电脑用户： 提前看好商品支持的系统，遇到问题自行尝试换机子或用云电脑</li>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 模态框 - 售后范围 -->
+    <div id="modal-after-sale" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-headset"></i> 售后范围详细内容</h2>
+                <button class="close" onclick="closeModal(&#39;modal-after-sale&#39;)">×</button>
+            </div>
+            <div class="modal-body">
+                <h3>售后政策说明</h3>
+                <div>
+                    <li><strong>申明：</strong> 不是卡密问题不退不换！</li>
+                    <li>本平台不提供任何软件使用教程和操作知识，请自行研究使用</li>
+                    <li>大部分软件官方网盘都自带文字或者视频教程，一些小问题都可以解决</li>
+                    <li>实在不懂的可以联系平台客服协助，客服只能是尽力协助</li>
+                    <li>不能承诺保证百分百解决问题，也不能承诺百分百教会使用</li>
+                    <li>一般基本教程会上传总网盘解决办法目录，请注意查看</li>
+                    <li>平台写的功能是根据作者提供说明的，具体以软件功能为主</li>
+                </div>
+                
+                <div class="note">
+                    <i class="fas fa-exclamation-triangle"></i> 因辅助软件可复制的特殊性，本平台只保证卡密正确无误
+                </div>
+                
+                <h3>不处理范围</h3>
+                <p>以下情况概不退换：</p>
+                <div>
+                    <li>下错单</li>
+                    <li>闪退/拉闸</li>
+                    <li>软件与手机/电脑不兼容问题</li>
+                    <li>个人操作不会使用问题</li>
+                    <li>使用不舒服</li>
+                    <li>软件开发商跑路</li>
+                    <li>所有非卡密问题</li>
+                </div>
+                
+                <p>介意请不要下单购买，本平台只是第三方出卡平台，并非辅助制作者，请理解！</p>
+                
+                <h3>售后时效</h3>
+                <p>在售后范围内的需在当天24点前找售后客服处理，过时不处理。</p>
+                
+                <h3>客服服务时间</h3>
+                <p>工作日早10：00-晚22：00</p>
+                <p>客服仅处理：卡密问题/网盘失效问题/部分使用问题</p>
+                <p>封号无法使用问题不包，包括到任何一个平台都不会包的</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 模态框 - 辅助类型 -->
+    <div id="modal-types" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-mobile-alt"></i> 辅助类型详细内容</h2>
+                <button class="close" onclick="closeModal(&#39;modal-types&#39;)">×</button>
+            </div>
+            <div class="modal-body">
+                <h3>安卓手游辅助类型</h3>
+                
+                <h4>1. 一体直装</h4>
+                <p>需要卸载原来的正版游戏,只下载网盘修改过的游戏,然后直接登入游戏就行,自带辅助外挂</p>
+                
+                <h4>2. 容器/分身直装</h4>
+                <p>使用官方正版游戏，只需要下载他的容器安装包，类似于分身应用，然后把你的游戏添加进容器里面，从容器里面启动游戏即可</p>
+                
+                <h4>3. Root插件</h4>
+                <p>使用官方正版游戏和MT管理器工具，打开游戏后给予插件应用ROOT权限直接使用或者是在MT管理器ROOT执行插件使用即可</p>
+                
+                <h4>4. Root内核</h4>
+                <p>使用官方正版游戏和MT管理器工具，在MT管理器ROOT执行驱动后，再ROOT执行内核辅助启动使用即可</p>
+                
+                <h3>设备兼容性警告</h3>
+                <div>
+                    <li><strong>安卓15设备：</strong> 大部分不兼容本站所有的辅助，确保你自己能承担使用中的闪退、安装失败、无法打开等等一切异常问题再下单！安卓15无任何售后！</li>
+                    <li><strong>华为、荣耀、vivo：</strong> 此三种机型不适用本站所有任何的辅助，禁止购买使用，否则个人承担一切后果，无任何售后，无法退单！</li>
+                    <li><strong>Root要求：</strong> 无Root设备仅可使用"直装、改文件"的商品，有Root设备可使用所有类型</li>
+                    <li><strong>iOS要求：</strong> 没越狱就购买标有"免越狱"，已越狱就购买标有"越狱"的商品</li>
+                </div>
+                
+                <h3>通用建议</h3>
+                <div>
+                    <li>不论是否Root用户，都建议下载MT管理器（mt2.cn）管理手机文件</li>
+                    <li>第一次使用MT管理器可在B站搜索"MT管理器基础教学"学习</li>
+                    <li>本站项目采用多种云盘，下单前务必提前安装好相应云盘应用</li>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 模态框 - 通用教程 -->
+    <div id="modal-tutorial" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-book-open"></i> 通用教程详细内容</h2>
+                <button class="close" onclick="closeModal(&#39;modal-tutorial&#39;)">×</button>
+            </div>
+            <div class="modal-body">
+                <h3><strong style="color: var(--primary);">新手小白下载保存指引</strong></h3>
+                
+                <h4>下载项目教程：</h4>
+                <ol>
+                    <li>手动复制你想要下单的商品介绍的下载链接（若无法复制请在手机自带浏览器打开本站）</li>
+                    <li>打开手机自带浏览器新页面，顶部粘贴链接访问（注意是输入链接的地方，不是搜索栏）</li>
+                    <li>访问后查看该项目使用的是哪款网盘，去手机应用商店下载对应的网盘app<strong style="color: var(--primary);">（当前依123云盘为例）</strong></li>
+                    <li>下载安装好123网盘app注册登陆上，回到浏览器点击在123网盘app中打开，此时跳转回123网盘app</li>
+                    <li>选择好项目保存到本地网盘，下载至本地即可，123云盘默认保存的路径是/storage/emulated/0/123云盘/</li>
+                </ol>
+
+                <h3><strong style="color: var(--primary);">新手小白打开方法指引</strong></h3>
+                
+                <h4>打开项目教程：</h4>
+                <ol>
+                    <li>浏览器访问链接<strong style="color: var(--primary);">mt2.cn</strong>下载mt管理器（一款文件管理器app）安装打开给权限</li>
+                    <li>有ROOT的给ROOT权限，没有的不给，找到对应网盘的下载路径打开，即可找到下载保存的项目</li>
+                    <li>第一次用请在哔哩哔哩搜索“MT管理器基础教学”有使用教程帮助你快速上手，可以用于后续的直装安装、改文件操作、插件使用、内核驱动刷入等等</li>
+                </ol>
+
+                <h3><strong style="color: var(--primary);">安卓手游辅助使用教程</strong></h3>
+                
+                <h4>一体直装使用教程：</h4>
+                <ol>
+                    <li>卸载正版游戏，下载网盘里面修改过的一体安装包</li>
+                    <li>安装好以后先不要启动修改过的游戏</li>
+                    <li>手动去手机设置给直装app所有权限(浮窗和储存权限是必须要给的，最好手动给所有权限)</li>
+                    <li>然后再启动修改过的游戏，输入卡密登录使用即可</li>
+                    <li>qq/vx登陆页面选择扫码登陆即可进入</li>
+                </ol>
+                
+                <h4>安卓容器/分身直装使用教程：</h4>
+                <ol>
+                    <li>不用卸载正版游戏，就准备好官方正版游戏</li>
+                    <li>下载好网盘里的容器安装包，安装好后</li>
+                    <li>手动去手机设置把容器app的权限全部打开(浮窗和储存权限是必须要给的，最好手动给所有权限)</li>
+                    <li>然后打开容器，输入激活码登录卡密</li>
+                    <li>再把你要玩的游戏放入容器当中，类似于双开应用</li>
+                    <li>然后在容器中打开游戏</li>
+                    <li>qq/vx登陆页面选择扫码登陆即可进入</li>
+                </ol>
+                
+                <h4>安卓root插件使用教程：</h4>
+                <p>（一）插件是app形式：</p>
+                <ol>
+                    <li>打开你的Root管理器给这个插件app的Root权限</li>
+                    <li>额外前往手机设置找到这个app给予所有权限</li>
+                    <li>打开插件输入卡密登入搭配游戏使用即可</li>
+                </ol>
+                
+                <p>（二）插件是sh文件形式：</p>
+                <ol>
+                    <li>找到下载到手的文件，直接在mt管理器找到</li>
+                    <li>移动到手机根目录/data的文件夹下</li>
+                    <li>长按文件点击权限全部打勾（给文件777权限）</li>
+                    <li>然后点击文件Root执行即可搭配游戏使用</li>
+                </ol>
+                
+                <h4>安卓root内核使用教程：</h4>
+                <ol>
+                    <li>找到下载到手的文件，直接在mt管理器找到</li>
+                    <li>如果下载到手的是zip后缀结尾的压缩包那就先解压</li>
+                    <li>一般由驱动和启动器两部分，根据自己手机内核版本先Root执行刷入相应版本号的驱动</li>
+                    <li>刷入成功后，找到启动器文件，把它移动到手机根目录/data的文件夹下</li>
+                    <li>长按启动器文件点击权限全部打勾（777权限）</li>
+                    <li>然后点击文件Root执行即可搭配游戏使用</li>
+                </ol>
+                
+                <h3><strong style="color: var(--primary);">苹果iOS系统使用教程</strong></h3>
+                
+                <h4>免签名使用教程：</h4>
+                <ol>
+                    <li>卸载正版游戏，去复制订单内的下载链接，到safari浏览器打开</li>
+                    <li>下载地址粘贴打开后直接点击一键安装即可</li>
+                    <li>然后打开游戏输入激活码激活即可</li>
+                    <li>免签的外挂也可自签安装：复制安装地址→打开全能签→下载→网址→下载</li>
+                </ol>
+                
+                <h4>签名使用教程：</h4>
+                <ol>
+                    <li>ios要签名安装的外挂，在订单内下载地址内都有对应的签名教程</li>
+                    <li>需要准备的东西：ios个人证书和全能签</li>
+                    <li>没有证书和全能签的也可以用爱思助手签名安装</li>
+                    <li>个别外挂需要搭配防封端口，需要用到小火箭（国外id下载）</li>
+                </ol>
+                
+                <h4>越狱使用教程：</h4>
+                <p>直接使用正版游戏搭配网盘的辅助结合使用即可（系统要求：iOS 13-16.6.1）</p>
+                
+                <h3><strong style="color: var(--primary);">PC/模拟器教程</strong></h3>
+                <p>端游的科技种类太多太杂了，具体使用教程看订单内网盘链接的外挂视频或文字教程，如果没有就谨慎购买。</p>
+                <p>常见问题解决方案：</p>
+                <div>
+                    <li>卡密问题：确保卡密正确</li>
+                    <li>驱动问题：安装必要驱动</li>
+                    <li>闪退问题：关闭杀毒软件，尝试换机子或用云电脑</li>
+                    <li>辅助软件保护：管理员运行辅助</li>
+                    <li>模拟器升级：确保版本兼容</li>
+                    <li>DX修复：使用修复工具</li>
+                    <li>四件套安装：确保环境完整</li>
+                    <li>关闭防火墙和杀毒软件（必须永久关闭）</li>
+                </div>
+                
+                <p><strong>工具下载：</strong></p>
+                <div>
+                    <li>问题解决工具包：<a href="https://wap.365faka.top/ds/content.html#" style="color: var(--primary); text-decoration: none;">https://wwd.lanzouv.com/b0200hhli</a></li>
+                    <li>修复工具合集：<a href="https://wap.365faka.top/ds/content.html#" style="color: var(--primary); text-decoration: none;">https://www.lanzoui.com/b0159y3zi</a></li>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 模态框 - 其他问题 -->
+    <div id="modal-other" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-question-circle"></i> 其他问题详细内容</h2>
+                <button class="close" onclick="closeModal(&#39;modal-other&#39;)">×</button>
+            </div>
+            <div class="modal-body">
+                
+                <h4>支付成功后显示未支付：</h4>
+                <ol>
+                    <li>下单必须填写正确的下单信息(手机号,QQ号,取卡密码,邮箱号)其中任意一种</li>
+                    <li>预留的信息用于接收卡密以及查询订单</li>
+                    <li>支付完直接回到网站查单页面查询下单信息</li>
+                    <li>点击立即查询后会弹出卡密信息</li>
+                </ol>
+                <h3></h3>
+                <h4>为什么查询订单显示待处理：</h4>
+                <ol>
+                    <li>本站的业务订单采用全系统自动处理，下单自动发货</li>
+                    <li>如果你购买的是卡密类商品，为自动发货，待处理可能是库存不足，平台带有自动补单机制，长时间待处理未发卡密联系客服处理即可</li>
+                    <li>如果你购买的是充值/DY/KS等业务代刷商品，本站仅仅负责代付提交至机房，一般72H内陆续到账，购前已经说明，漏单/掉量/掉单/吞单均无售后，介意禁拍</li>
+                </ol>
+                <h3></h3>
+                <h4>安装app软件报毒失败怎么办：</h4>
+                <ol>
+                    <li>先把手机应用宝卸载了(没有请无视)</li>
+                    <li>去设置里面把'禁止安装恶意软件'关闭</li>
+                    <li>断网安装</li>
+                    <li>删除其他辅助软件卸载可能包名重复了导致无法安装</li>
+                    <li>需要把正版游戏卸载了再进行安装</li>
+                </ol>
+                <h3></h3>
+                <h4>辅助刚上来使用就封号：</h4>
+                <ol>
+                    <li>辅助封号可搭配防封端口使用用来增长使用时间（最后还是大概率封号）。</li>
+                    <li>封号已经在【支付页面】【网站教程】【购前必看】【文章必读】等等地方甚至付款之前已经做出说明，本站所有商品均是网站收集，不负责任何封禁甚至秒封同样后果自负概不退换！</li>
+                </ol>
+                <h3></h3>
+                <h4>非正版应用/微信签名不一致：</h4>
+                <ol>
+                    <li>QQ登录提示非正版应用：使用一键上号的上号器或卸载QQ扫码上号</li>
+                    <li>WX登录提示签名不一致：扫码登录即可或扫码VX小号一键上号</li>
+                </ol>
+                <h3></h3>
+                <h4>输入卡密提示服务器连接超时：</h4>
+                <ol>
+                    <li>软件开发商关闭服务器在更新或维护导致暂时无法登入！</li>
+                    <li>软件服务器被打导致短时间无法登录，耐心等待恢复！</li>
+                    <li>若提示卡密不存在请带上网站查询的详细订单截图联系人工客服</li>
+                </ol>
+                <h3></h3>
+                <h4>机器码错误/请在原设备登录：</h4>
+                <ol>
+                    <li>出现这些情况自己更换了登录设备的设备码导致</li>
+                    <li>手机刷机和更换虚拟机更换框架都会导致设备码不一样</li>
+                    <li>桌面和虚拟机的设备码也不一样最常见的就是桌面登录了卡密，然后去虚拟机里面登录，或者更换虚拟机使用，更换框架使用</li>
+                    <li>有一些直装软件卸载重装也会设备码错误</li>
+                    <li>卡密绑定设备只会绑定第一次登入的机型</li>
+                    <li>这种问题先看看软件有没有自带解绑按钮或解绑链接</li>
+                    <li>如果没有带上订单号问客服能不能解绑，如果不能解绑请自行承担</li>
+                </ol>
+                <h3></h3>
+                <h4>国际服提示一串英文代码：</h4>
+                <ol>
+                    <li>先打开游戏，中间出现英文的时候，再退出</li>
+                    <li>使用MT管理器找到下载的obb浏览器下载选择用MT管理器打开，然后随便找个文件夹往里面放一下，找到android进去找到obb然后再找com.tencent.ig，找到obb直接选择移动进去然后重启游戏</li>
+                    <li>如果还是出现那玩意的话大退一下，如果还是不行，那就是obb下载错了！</li>
+                </ol>
+                <h3></h3>
+                <h4>闪退问题解决办法：</h4>
+                <ol>
+                    <li>权限都给，不要禁止权限，悬浮窗口别禁止</li>
+                    <li>手机有任何自带加速游戏的都别开</li>
+                    <li>重装一次试试，别覆盖安装，卸载干净重启再次安装尝试</li>
+                    <li>如任何方法都尝试，依旧不行就是不支持你的机型！</li>
+                </ol>
+                <h3></h3>
+
+                <h4>关于sh文件怎么打开操作：</h4>
+                <ol>
+                    <li>首先手机需Root权限</li>
+                    <li>从网盘打开sh文件➯之后mt找到data目录➯手机设置➯关于手机➯详细参数➯内核版本➯找到对应内核版本的驱动</li>
+                    <li>之后把挂.sh文件解压到data/长按属性/660/600改成777/之后点击文件执行</li>
+                </ol>
+                <h3></h3>
+                <h4>苹果免越狱问题以及安装失败解决办法：</h4>
+                <ol>
+                    <li>打开网址点击下载如免签名无法下载提示验证不完整无法打开App 则需要自签</li>
+                    <li>首先要留有足够空间（20G以上）--卸载原先的游戏/删除黑图标--清理浏览器数据--还原所有设置--重新安装</li>
+                    <li>如果还不行就切换一下网络重新试一遍</li>
+                    <li>所有问题基本解决！还不行的就点一下签名旁边的"重置"，重新打开安装一遍</li>
+                    <li>有时候提示卡密不存在并非是卡密错误，切换一下网络登录几乎可以解决百分之八十</li>
+                    <li>极个别登录不了提示卡密不存在说明服务器正在被打等等他恢复在登陆就好了！</li>
+                    <li>iOS进游戏有菜单不显示功能大退重新进入即可，还不行就关机重启</li>
+                    <li>iOS下载好不能安装/无法验证完整性：内存不够或者是他桌面上游戏没删除预留30g以上内存，重新点重置安装再下载一次即可</li>
+                    <li>输入卡密几秒后闪退：手机设置北京时间24小时制或检查是否下载错软件，如还未解决请携带订单号联系客服处理</li>
+                </ol>
+                <h3></h3>
+                <h4>DY/KS等代刷业务很久没开刷：</h4>
+                <ol>
+                    <li>下单前先确认输的信息是否正确！</li>
+                    <li>请检查作品是否违规或者出现审核等无法正常观看的情况</li>
+                    <li>请检查下单时的作品链接是否正确，超过24小时未开始联系客服处理</li>
+                    <li>代刷业务非本站自营，我们代付提交至机房代刷，72H内陆续到账，介意已提前声明禁止下单</li>
+                </ol>
+                <h3></h3>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 打开模态框
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+        
+        // 关闭模态框
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+        
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }
+            });
+        }
+        
+        // 添加卡片悬停效果
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 6px 20px rgba(139, 0, 0, 0.15)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
+            });
+        });
+    </script>
+
+</body></html>

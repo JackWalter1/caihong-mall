@@ -1,0 +1,160 @@
+/* ============================================================
+   管理后台 UI 风格：赛博朋克（cyber）
+   特色：深紫黑底、青色霓虹边框、斜切角按钮、发光高亮
+   加载方式：由 admin/head.php 根据 conf['admin_ui_style'] 引入
+   ============================================================ */
+
+/* ---------- 全局背景 ---------- */
+body { background: #0f0b1e !important; }
+#page-container, #main-container { background: #0f0b1e !important; }
+#page-content { background: #0f0b1e !important; }
+body { color: #b8aee8 !important; }
+
+/* ---------- 顶栏 ---------- */
+body header.navbar-fixed-top,
+body header.navbar {
+    background: linear-gradient(90deg,#140c2e,#1d1145) !important;
+    border-bottom: 1px solid #3d2a70 !important;
+    box-shadow: 0 2px 20px rgba(0,255,196,0.12) !important;
+}
+body header.navbar .navbar-brand,
+body header.navbar .navbar-brand:hover { color: #b8aee8 !important; }
+body header.navbar .nav > li > a { color: #b8aee8 !important; }
+body header.navbar .nav > li > a:hover { color: #00ffc4 !important; background: rgba(0,255,196,0.08) !important; }
+
+/* ---------- 侧边栏 ---------- */
+body #sidebar { background: linear-gradient(180deg,#140c2e,#180f38) !important; border-right: 1px solid #3d2a70 !important; }
+body #sidebar .sidebar-content { background: linear-gradient(180deg,#140c2e,#180f38) !important; }
+body .sidebar-nav a { color: #a99fd8 !important; }
+body .sidebar-nav a:hover,
+body .sidebar-nav a:focus { color: #00ffc4 !important; background: rgba(0,255,196,0.10) !important; }
+body .sidebar-nav a.active,
+body .sidebar-nav li.active > a { color: #fff !important; background: #00ffc4 !important; border-right: none !important; }
+body .sidebar-nav a.open { background: rgba(0,255,196,0.10) !important; color: #a99fd8 !important; }
+body .sidebar-nav .sidebar-nav-menu { color: #a99fd8 !important; }
+body .sidebar-nav .sidebar-nav-menu:hover { background: rgba(0,255,196,0.10) !important; }
+body .sidebar-nav a.active, body .sidebar-nav li.active > a { box-shadow: 0 0 16px rgba(0,255,196,0.35) !important; }
+
+/* ---------- 面板/卡片 ---------- */
+body .block,
+body .panel { background: #171130 !important; border: 1px solid #3d2a70 !important; border-radius: 6px !important; box-shadow: 0 0 20px rgba(0,255,196,0.07) !important; }
+body .block-title,
+body .panel-heading { background: #1e1640 !important; border-bottom: 1px solid #3d2a70 !important; }
+body .block-title h2,
+body .panel-title { color: #00ffc4 !important; font-weight: 600 !important; }
+body .panel-footer { background: #1e1640 !important; border-top: 1px solid #3d2a70 !important; }
+
+
+/* ---------- 表格 ---------- */
+body .table { background: transparent !important; }
+body .table thead > tr > th { background: #241a4d !important; color: #00ffc4 !important; font-weight: 600 !important; border-bottom: 2px solid #4a3785 !important; }
+body .table > tbody > tr:hover { background: rgba(0,255,196,0.06) !important; }
+body .table { color: #c6bdf0 !important; } body .table > tbody > tr { border-color: #3d2a70 !important; }
+
+/* ---------- 按钮 ---------- */
+body .btn { border-radius: 4px !important; }
+body .btn-primary { background: #00ffc4 !important; border-color: #00c998 !important; color: #fff !important; box-shadow: 0 0 12px rgba(0,255,196,0.30) !important; }
+body .btn-success { background: #39ff88 !important; border-color: #00c96a !important; color: #fff !important; box-shadow: 0 0 12px rgba(0,255,196,0.30) !important; }
+body .btn-info { background: #4cc9f0 !important; border-color: #3a86ff !important; color: #fff !important; box-shadow: 0 0 12px rgba(0,255,196,0.30) !important; }
+body .btn-warning { background: #ffd60a !important; border-color: #ff9e00 !important; color: #fff !important; box-shadow: 0 0 12px rgba(0,255,196,0.30) !important; }
+body .btn-danger { background: #ff0a54 !important; border-color: #d90429 !important; color: #fff !important; box-shadow: 0 0 12px rgba(0,255,196,0.30) !important; }
+body .btn-default { background: #241a4d !important; border: 1px solid #4a3785 !important; color: #b8aee8 !important; box-shadow: none !important; }
+body .btn-xs, body .btn-sm { border-radius: 4px !important; }
+body .btn-primary:hover, body .btn-primary:focus { background: #4dffd6 !important; border-color: #00c998 !important; }
+body .btn-success:hover, body .btn-success:focus { background: #7bffb0 !important; border-color: #00c96a !important; }
+body .btn-info:hover, body .btn-info:focus { background: #7de3ff !important; border-color: #3a86ff !important; }
+body .btn-warning:hover, body .btn-warning:focus { background: #ffe45c !important; border-color: #ff9e00 !important; }
+body .btn-danger:hover, body .btn-danger:focus { background: #ff5c8a !important; border-color: #d90429 !important; }
+
+/* ---------- 链接/标签/徽章 ---------- */
+body a { color: #00ffc4 !important; }
+body .label { border-radius: 4px !important; font-weight: 400 !important; }
+body .label-default { background: #2b2056 !important; color: #a99fd8 !important; }
+body .label-primary { background: #00ffc4 !important; }
+body .label-success { background: #39ff88 !important; }
+body .label-info { background: #4cc9f0 !important; }
+body .label-warning { background: #ffd60a !important; }
+body .label-danger { background: #ff0a54 !important; }
+body .badge { background: #00ffc4 !important; }
+
+/* ---------- 分页 ---------- */
+body .pagination > li > a,
+body .pagination > li > span { color: #00ffc4 !important; border: 1px solid #4a3785 !important; border-radius: 4px !important; background: #241a4d !important; }
+body .pagination > li > a:hover { background: rgba(0,255,196,0.12) !important; }
+body .pagination > .active > a,
+body .pagination > .active > span { background: #00ffc4 !important; border-color: #00c998 !important; color: #fff !important; }
+
+/* ---------- 表单控件 ---------- */
+body .form-control { border: 1px solid #4a3785 !important; border-radius: 4px !important; box-shadow: inset 0 1px 3px rgba(0,0,0,0.4) !important; }
+body .form-control:focus { border-color: #00ffc4 !important; box-shadow: 0 0 0 3px rgba(0,255,196,0.15) !important; }
+body .form-control { background: #1e1640 !important; color: #c6bdf0 !important; }
+
+/* ---------- 下拉菜单/面包屑 ---------- */
+body .dropdown-menu { border: 1px solid #3d2a70 !important; border-radius: 4px !important; box-shadow: 0 12px 30px rgba(0,0,0,0.7) !important; }
+body .dropdown-menu > li > a { color: #b8aee8 !important; }
+body .dropdown-menu > li > a:hover { background: rgba(0,255,196,0.10) !important; }
+body .breadcrumb { background: transparent !important; }
+body .breadcrumb > .active { color: #8a7fba !important; }
+
+/* ---------- 列表组/提示条 ---------- */
+body .list-group-item { border: 1px solid #3d2a70 !important; background: #171130 !important; }
+body .alert { border-radius: 4px !important; }
+body .well { background: #241a4d !important; border: 1px solid #3d2a70 !important; border-radius: 4px !important; box-shadow: none !important; }
+
+
+/* ---------- 页面级覆盖（分类/商品列表等带内联样式的页面） ---------- */
+body #classlist thead > tr > th,
+body #shoplist thead > tr > th { background: #241a4d !important; color: #00ffc4 !important; font-weight: 600 !important; border-bottom: 2px solid #4a3785 !important; }
+body #classlist > tbody > tr:hover,
+body #shoplist > tbody > tr:hover { background: rgba(0,255,196,0.06) !important; }
+body #classlist .btn-primary,
+body #shoplist .btn-primary { background: #00ffc4 !important; border-color: #00c998 !important; color: #fff !important; }
+body #classlist .btn-success,
+body #shoplist .btn-success { background: #39ff88 !important; border-color: #00c96a !important; color: #fff !important; }
+body #classlist .btn-info,
+body #shoplist .btn-info { background: #4cc9f0 !important; border-color: #3a86ff !important; color: #fff !important; }
+body #classlist .btn-warning,
+body #shoplist .btn-warning { background: #ffd60a !important; border-color: #ff9e00 !important; color: #fff !important; }
+body #classlist .btn-danger,
+body #shoplist .btn-danger { background: #ff0a54 !important; border-color: #d90429 !important; color: #fff !important; }
+body #classlist .btn-default,
+body #shoplist .btn-default { background: #241a4d !important; border: 1px solid #4a3785 !important; color: #b8aee8 !important; }
+body #classlist .btn,
+body #classlist .btn-xs,
+body #classlist .btn-sm,
+body #shoplist .btn,
+body #shoplist .btn-xs,
+body #shoplist .btn-sm { border-radius: 4px !important; }
+body #classlist select,
+body #shoplist select { border: 1px solid #4a3785 !important; border-radius: 4px !important; }
+
+/* ---------- 通用组件覆盖（保证全页面风格统一） ---------- */
+body .panel-primary .panel-heading { background: linear-gradient(135deg,#00ffc4,#7b2cbf) !important; border-color: #00c998 !important; color: #fff !important; }
+body .panel-success .panel-heading { background: linear-gradient(135deg,#7bffb0,#39ff88) !important; border-color: #00c96a !important; color: #fff !important; }
+body .panel-info .panel-heading { background: linear-gradient(135deg,#7de3ff,#4cc9f0) !important; border-color: #3a86ff !important; color: #fff !important; }
+body .panel-warning .panel-heading { background: linear-gradient(135deg,#ffe45c,#ffd60a) !important; border-color: #ff9e00 !important; color: #fff !important; }
+body .panel-danger .panel-heading { background: linear-gradient(135deg,#ff5c8a,#ff0a54) !important; border-color: #d90429 !important; color: #fff !important; }
+body .bg-primary { background-color: #00ffc4 !important; }
+body .bg-success { background-color: #39ff88 !important; }
+body .bg-info { background-color: #4cc9f0 !important; }
+body .bg-warning { background-color: #ffd60a !important; }
+body .bg-danger { background-color: #ff0a54 !important; }
+body .bg-gray, body .bg-gray-lighter, body .bg-gray-light { background-color: #171130 !important; }
+body .text-primary { color: #00ffc4 !important; }
+body .text-success { color: #39ff88 !important; }
+body .text-info { color: #4cc9f0 !important; }
+body .text-warning { color: #ffd60a !important; }
+body .text-danger { color: #ff0a54 !important; }
+body .nav-tabs > li.active > a,
+body .nav-tabs > li.active > a:hover,
+body .nav-tabs > li.active > a:focus { border-top: 3px solid #00ffc4 !important; color: #00ffc4 !important; }
+body .progress-bar { background-color: #00ffc4 !important; }
+body .list-group-item.active,
+body .list-group-item.active:hover,
+body .list-group-item.active:focus { background-color: #00ffc4 !important; border-color: #00c998 !important; color: #fff !important; }
+body .modal-content { border-radius: 6px !important; border: 1px solid #3d2a70 !important; }
+body .modal-header { background: linear-gradient(135deg,#00ffc4,#7b2cbf) !important; color: #fff !important; border-bottom: 1px solid #00c998 !important; border-radius: 6px 6px 0 0 !important; }
+body .modal-header .close { color: #fff !important; opacity: .9 !important; text-shadow: none !important; }
+body .modal-footer { border-top: 1px solid #3d2a70 !important; background: #1e1640 !important; }
+body .modal-title { color: #fff !important; }
+body .modal-content { background: #171130 !important; }

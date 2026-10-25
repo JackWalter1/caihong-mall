@@ -1,0 +1,159 @@
+/* ============================================================
+   管理后台 UI 风格：日落暖橙（sunset）
+   特色：橙粉渐变顶栏、暖色系、落日余晖氛围
+   加载方式：由 admin/head.php 根据 conf['admin_ui_style'] 引入
+   ============================================================ */
+
+/* ---------- 全局背景 ---------- */
+body { background: #fdf0e7 !important; }
+#page-container, #main-container { background: #fdf0e7 !important; }
+#page-content { background: #fdf0e7 !important; }
+
+
+/* ---------- 顶栏 ---------- */
+body header.navbar-fixed-top,
+body header.navbar {
+    background: linear-gradient(90deg,#f97316,#ec4899) !important;
+    border-bottom: 1px solid #d9541a !important;
+    box-shadow: 0 3px 14px rgba(249,115,22,0.30) !important;
+}
+body header.navbar .navbar-brand,
+body header.navbar .navbar-brand:hover { color: #fff7ed !important; }
+body header.navbar .nav > li > a { color: #fff7ed !important; }
+body header.navbar .nav > li > a:hover { color: #ffffff !important; background: rgba(255,255,255,0.14) !important; }
+
+/* ---------- 侧边栏 ---------- */
+body #sidebar { background: #ffffff !important; border-right: 1px solid #f5dfd2 !important; }
+body #sidebar .sidebar-content { background: #ffffff !important; }
+body .sidebar-nav a { color: #6b4a3a !important; }
+body .sidebar-nav a:hover,
+body .sidebar-nav a:focus { color: #ea580c !important; background: #fff1e6 !important; }
+body .sidebar-nav a.active,
+body .sidebar-nav li.active > a { color: #fff !important; background: #ea580c !important; border-right: none !important; }
+body .sidebar-nav a.open { background: #fff1e6 !important; color: #6b4a3a !important; }
+body .sidebar-nav .sidebar-nav-menu { color: #6b4a3a !important; }
+body .sidebar-nav .sidebar-nav-menu:hover { background: #fff1e6 !important; }
+
+
+/* ---------- 面板/卡片 ---------- */
+body .block,
+body .panel { background: #ffffff !important; border: 1px solid #f3ddcc !important; border-radius: 12px !important; box-shadow: 0 5px 18px rgba(249,115,22,0.10) !important; }
+body .block-title,
+body .panel-heading { background: #fef4ec !important; border-bottom: 1px solid #f3ddcc !important; }
+body .block-title h2,
+body .panel-title { color: #9a3412 !important; font-weight: 600 !important; }
+body .panel-footer { background: #fef4ec !important; border-top: 1px solid #f3ddcc !important; }
+body .panel-title { background: linear-gradient(90deg,#ea580c,#ec4899) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; }
+
+/* ---------- 表格 ---------- */
+body .table { background: #ffffff !important; }
+body .table thead > tr > th { background: #fdeedf !important; color: #c2410c !important; font-weight: 600 !important; border-bottom: 2px solid #f8d8c0 !important; }
+body .table > tbody > tr:hover { background: #fef7f1 !important; }
+
+
+/* ---------- 按钮 ---------- */
+body .btn { border-radius: 10px !important; }
+body .btn-primary { background: #ea580c !important; border-color: #c2410c !important; color: #fff !important; box-shadow: 0 3px 12px rgba(234,88,12,0.28) !important; }
+body .btn-success { background: #d97706 !important; border-color: #b45309 !important; color: #fff !important; box-shadow: 0 3px 12px rgba(234,88,12,0.28) !important; }
+body .btn-info { background: #0ea5e9 !important; border-color: #0284c7 !important; color: #fff !important; box-shadow: 0 3px 12px rgba(234,88,12,0.28) !important; }
+body .btn-warning { background: #f59e0b !important; border-color: #d97706 !important; color: #fff !important; box-shadow: 0 3px 12px rgba(234,88,12,0.28) !important; }
+body .btn-danger { background: #e11d48 !important; border-color: #be123c !important; color: #fff !important; box-shadow: 0 3px 12px rgba(234,88,12,0.28) !important; }
+body .btn-default { background: #ffffff !important; border: 1px solid #f0c9ae !important; color: #9a3412 !important; box-shadow: none !important; }
+body .btn-xs, body .btn-sm { border-radius: 10px !important; }
+body .btn-primary:hover, body .btn-primary:focus { background: #f97316 !important; border-color: #c2410c !important; }
+body .btn-success:hover, body .btn-success:focus { background: #f59e0b !important; border-color: #b45309 !important; }
+body .btn-info:hover, body .btn-info:focus { background: #38bdf8 !important; border-color: #0284c7 !important; }
+body .btn-warning:hover, body .btn-warning:focus { background: #fbbf24 !important; border-color: #d97706 !important; }
+body .btn-danger:hover, body .btn-danger:focus { background: #f43f5e !important; border-color: #be123c !important; }
+
+/* ---------- 链接/标签/徽章 ---------- */
+body a { color: #ea580c !important; }
+body .label { border-radius: 10px !important; font-weight: 400 !important; }
+body .label-default { background: #fdeedf !important; color: #c2410c !important; }
+body .label-primary { background: #ea580c !important; }
+body .label-success { background: #d97706 !important; }
+body .label-info { background: #0ea5e9 !important; }
+body .label-warning { background: #f59e0b !important; }
+body .label-danger { background: #e11d48 !important; }
+body .badge { background: #ea580c !important; }
+
+/* ---------- 分页 ---------- */
+body .pagination > li > a,
+body .pagination > li > span { color: #ea580c !important; border: 1px solid #f0c9ae !important; border-radius: 10px !important; background: #ffffff !important; }
+body .pagination > li > a:hover { background: #fff1e6 !important; }
+body .pagination > .active > a,
+body .pagination > .active > span { background: #ea580c !important; border-color: #c2410c !important; color: #fff !important; }
+
+/* ---------- 表单控件 ---------- */
+body .form-control { border: 1px solid #f0c9ae !important; border-radius: 10px !important; box-shadow: inset 0 1px 3px rgba(154,52,18,0.06) !important; }
+body .form-control:focus { border-color: #ea580c !important; box-shadow: 0 0 0 3px rgba(234,88,12,0.16) !important; }
+
+
+/* ---------- 下拉菜单/面包屑 ---------- */
+body .dropdown-menu { border: 1px solid #f3ddcc !important; border-radius: 10px !important; box-shadow: 0 10px 24px rgba(154,52,18,0.15) !important; }
+body .dropdown-menu > li > a { color: #6b3a2a !important; }
+body .dropdown-menu > li > a:hover { background: #fff1e6 !important; }
+body .breadcrumb { background: transparent !important; }
+body .breadcrumb > .active { color: #a07060 !important; }
+
+/* ---------- 列表组/提示条 ---------- */
+body .list-group-item { border: 1px solid #f3ddcc !important; background: #ffffff !important; }
+body .alert { border-radius: 10px !important; }
+body .well { background: #fdf0e7 !important; border: 1px solid #f3ddcc !important; border-radius: 10px !important; box-shadow: none !important; }
+
+
+/* ---------- 页面级覆盖（分类/商品列表等带内联样式的页面） ---------- */
+body #classlist thead > tr > th,
+body #shoplist thead > tr > th { background: #fdeedf !important; color: #c2410c !important; font-weight: 600 !important; border-bottom: 2px solid #f8d8c0 !important; }
+body #classlist > tbody > tr:hover,
+body #shoplist > tbody > tr:hover { background: #fef7f1 !important; }
+body #classlist .btn-primary,
+body #shoplist .btn-primary { background: #ea580c !important; border-color: #c2410c !important; color: #fff !important; }
+body #classlist .btn-success,
+body #shoplist .btn-success { background: #d97706 !important; border-color: #b45309 !important; color: #fff !important; }
+body #classlist .btn-info,
+body #shoplist .btn-info { background: #0ea5e9 !important; border-color: #0284c7 !important; color: #fff !important; }
+body #classlist .btn-warning,
+body #shoplist .btn-warning { background: #f59e0b !important; border-color: #d97706 !important; color: #fff !important; }
+body #classlist .btn-danger,
+body #shoplist .btn-danger { background: #e11d48 !important; border-color: #be123c !important; color: #fff !important; }
+body #classlist .btn-default,
+body #shoplist .btn-default { background: #ffffff !important; border: 1px solid #f0c9ae !important; color: #9a3412 !important; }
+body #classlist .btn,
+body #classlist .btn-xs,
+body #classlist .btn-sm,
+body #shoplist .btn,
+body #shoplist .btn-xs,
+body #shoplist .btn-sm { border-radius: 10px !important; }
+body #classlist select,
+body #shoplist select { border: 1px solid #f0c9ae !important; border-radius: 10px !important; }
+
+/* ---------- 通用组件覆盖（保证全页面风格统一） ---------- */
+body .panel-primary .panel-heading { background: linear-gradient(135deg,#f97316,#ec4899) !important; border-color: #c2410c !important; color: #fff !important; }
+body .panel-success .panel-heading { background: linear-gradient(135deg,#f59e0b,#d97706) !important; border-color: #b45309 !important; color: #fff !important; }
+body .panel-info .panel-heading { background: linear-gradient(135deg,#38bdf8,#0ea5e9) !important; border-color: #0284c7 !important; color: #fff !important; }
+body .panel-warning .panel-heading { background: linear-gradient(135deg,#fbbf24,#f59e0b) !important; border-color: #d97706 !important; color: #fff !important; }
+body .panel-danger .panel-heading { background: linear-gradient(135deg,#f43f5e,#e11d48) !important; border-color: #be123c !important; color: #fff !important; }
+body .bg-primary { background-color: #ea580c !important; }
+body .bg-success { background-color: #d97706 !important; }
+body .bg-info { background-color: #0ea5e9 !important; }
+body .bg-warning { background-color: #f59e0b !important; }
+body .bg-danger { background-color: #e11d48 !important; }
+body .bg-gray, body .bg-gray-lighter, body .bg-gray-light { background-color: #fbe9dc !important; }
+body .text-primary { color: #ea580c !important; }
+body .text-success { color: #d97706 !important; }
+body .text-info { color: #0ea5e9 !important; }
+body .text-warning { color: #f59e0b !important; }
+body .text-danger { color: #e11d48 !important; }
+body .nav-tabs > li.active > a,
+body .nav-tabs > li.active > a:hover,
+body .nav-tabs > li.active > a:focus { border-top: 3px solid #ea580c !important; color: #ea580c !important; }
+body .progress-bar { background-color: #ea580c !important; }
+body .list-group-item.active,
+body .list-group-item.active:hover,
+body .list-group-item.active:focus { background-color: #ea580c !important; border-color: #c2410c !important; color: #fff !important; }
+body .modal-content { border-radius: 12px !important; border: 1px solid #f3ddcc !important; }
+body .modal-header { background: linear-gradient(135deg,#f97316,#ec4899) !important; color: #fff !important; border-bottom: 1px solid #c2410c !important; border-radius: 12px 12px 0 0 !important; }
+body .modal-header .close { color: #fff !important; opacity: .9 !important; text-shadow: none !important; }
+body .modal-footer { border-top: 1px solid #f3ddcc !important; background: #fef4ec !important; }
+body .modal-title { color: #fff !important; }

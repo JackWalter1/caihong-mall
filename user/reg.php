@@ -1,0 +1,248 @@
+<?php
+/**
+ * 注册页面 - 对标 hack.wetcs.cn 左右分栏风格
+ * 保留原注册逻辑 / 验证码 / addsalt 接口，仅替换前端模板
+**/
+$is_defend=true;
+include("../includes/common.php");
+if($islogin2==1){
+	@header('Content-Type: text/html; charset=UTF-8');
+	exit("<script language='javascript'>alert('您已登录！');window.location.href='./';</script>");
+}
+if(!$conf['user_open'] && $conf['fenzhan_buy']==1){
+	exit("<script language='javascript'>window.location.href='./regsite.php';</script>");
+}elseif(!$conf['user_open']){
+	@header('Content-Type: text/html; charset=UTF-8');
+	exit("<script language='javascript'>alert('未开放新用户注册');window.location.href='./';</script>");
+}
+$title='用户注册';
+
+$addsalt=md5(mt_rand(0,999).time());
+$_SESSION['addsalt']=$addsalt;
+$x = new \lib\hieroglyphy();
+$addsalt_js = $x->hieroglyphyString($addsalt);
+
+// 设置CDN路径
+if($conf['cdnpublic']==1){
+	$cdnpublic = '//lib.baomitu.com/';
+}elseif($conf['cdnpublic']==2){
+	$cdnpublic = 'https://cdn.bootcdn.net/ajax/libs/';
+}elseif($conf['cdnpublic']==4){
+	$cdnpublic = '//s1.pstatp.com/cdn/expire-1-M/';
+}else{
+	$cdnpublic = '//lib.baomitu.com/';
+}
+$sitename = !empty($conf['sitename']) ? $conf['sitename'] : '用户中心';
+?>
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title><?php echo $title?> - <?php echo $sitename?></title>
+  <?php if(!empty($conf['favicon'])){echo '<link rel="icon" href="'.htmlspecialchars($conf['favicon']).'" type="image/x-icon" />';}?>
+  <link href="<?php echo $cdnpublic?>font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/user/css/auth.css?v=20261017">
+</head>
+<body>
+<div class="auth-page">
+
+  <!-- 左侧蓝色插画面板 -->
+  <div class="auth-illustration">
+    <svg viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="cloudGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#8ec5ff" stop-opacity="0.9"/>
+          <stop offset="60%" stop-color="#4d9aff" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#0066FF" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="cubeTop" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#d6e8ff"/>
+        </linearGradient>
+        <linearGradient id="cubeLeft" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#9bc4f5"/>
+          <stop offset="100%" stop-color="#c5dcf7"/>
+        </linearGradient>
+        <linearGradient id="cubeRight" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#c5dcf7"/>
+          <stop offset="100%" stop-color="#7fb0ee"/>
+        </linearGradient>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- 透视网格地面 -->
+      <g stroke="#5aa0ff" stroke-width="1" opacity="0.35" fill="none">
+        <line x1="240" y1="420" x2="60" y2="200"/>
+        <line x1="240" y1="420" x2="420" y2="200"/>
+        <line x1="240" y1="420" x2="240" y2="180"/>
+        <line x1="100" y1="420" x2="380" y2="420"/>
+        <line x1="120" y1="380" x2="360" y2="380"/>
+        <line x1="140" y1="340" x2="340" y2="340"/>
+        <line x1="160" y1="300" x2="320" y2="300"/>
+        <line x1="180" y1="260" x2="300" y2="260"/>
+        <line x1="200" y1="220" x2="280" y2="220"/>
+        <line x1="150" y1="240" x2="330" y2="240"/>
+        <line x1="120" y1="290" x2="360" y2="290"/>
+        <line x1="90" y1="340" x2="390" y2="340"/>
+        <line x1="60" y1="390" x2="420" y2="390"/>
+      </g>
+
+      <!-- 顶部发光云脑 -->
+      <ellipse cx="240" cy="110" rx="130" ry="90" fill="url(#cloudGlow)" filter="url(#glow)"/>
+      <g fill="#bfe0ff" opacity="0.85">
+        <circle cx="180" cy="80" r="7"/><circle cx="210" cy="60" r="6"/>
+        <circle cx="250" cy="55" r="8"/><circle cx="290" cy="70" r="6"/>
+        <circle cx="310" cy="100" r="7"/><circle cx="270" cy="120" r="6"/>
+        <circle cx="220" cy="115" r="7"/><circle cx="170" cy="110" r="6"/>
+        <circle cx="150" cy="90" r="5"/><circle cx="320" cy="80" r="5"/>
+        <circle cx="240" cy="90" r="6"/>
+      </g>
+      <g stroke="#bfe0ff" stroke-width="1.5" opacity="0.5" fill="none">
+        <line x1="180" y1="80" x2="210" y2="60"/><line x1="210" y1="60" x2="250" y2="55"/>
+        <line x1="250" y1="55" x2="290" y2="70"/><line x1="290" y1="70" x2="310" y2="100"/>
+        <line x1="310" y1="100" x2="270" y2="120"/><line x1="270" y1="120" x2="220" y2="115"/>
+        <line x1="220" y1="115" x2="170" y2="110"/><line x1="170" y1="110" x2="150" y2="90"/>
+        <line x1="150" y1="90" x2="180" y2="80"/><line x1="180" y1="80" x2="240" y2="90"/>
+        <line x1="240" y1="90" x2="290" y2="70"/><line x1="240" y1="90" x2="220" y2="115"/>
+        <line x1="250" y1="55" x2="320" y2="80"/><line x1="320" y1="80" x2="310" y2="100"/>
+      </g>
+
+      <!-- 立方体 1（左前，大） -->
+      <g>
+        <polygon points="120,250 180,215 240,250 180,285" fill="url(#cubeTop)" stroke="#ffffff" stroke-width="1.5"/>
+        <polygon points="120,250 120,310 180,345 180,285" fill="url(#cubeLeft)" stroke="#8fbef0" stroke-width="1"/>
+        <polygon points="240,250 240,310 180,345 180,285" fill="url(#cubeRight)" stroke="#8fbef0" stroke-width="1"/>
+        <circle cx="180" cy="250" r="5" fill="#2A7AF3" filter="url(#glow)"/>
+      </g>
+
+      <!-- 立方体 2（右前，中） -->
+      <g>
+        <polygon points="260,280 310,252 360,280 310,308" fill="url(#cubeTop)" stroke="#ffffff" stroke-width="1.5"/>
+        <polygon points="260,280 260,330 310,358 310,308" fill="url(#cubeLeft)" stroke="#8fbef0" stroke-width="1"/>
+        <polygon points="360,280 360,330 310,358 310,308" fill="url(#cubeRight)" stroke="#8fbef0" stroke-width="1"/>
+        <circle cx="310" cy="280" r="4" fill="#2A7AF3" filter="url(#glow)"/>
+      </g>
+
+      <!-- 立方体 3（中间后，小） -->
+      <g>
+        <polygon points="195,205 230,185 265,205 230,225" fill="url(#cubeTop)" stroke="#ffffff" stroke-width="1.2"/>
+        <polygon points="195,205 195,245 230,265 230,225" fill="url(#cubeLeft)" stroke="#8fbef0" stroke-width="0.8"/>
+        <polygon points="265,205 265,245 230,265 230,225" fill="url(#cubeRight)" stroke="#8fbef0" stroke-width="0.8"/>
+      </g>
+
+      <!-- 立方体 4（左后，小） -->
+      <g>
+        <polygon points="80,220 110,203 140,220 110,237" fill="url(#cubeTop)" stroke="#ffffff" stroke-width="1"/>
+        <polygon points="80,220 80,255 110,272 110,237" fill="url(#cubeLeft)" stroke="#8fbef0" stroke-width="0.8"/>
+        <polygon points="140,220 140,255 110,272 110,237" fill="url(#cubeRight)" stroke="#8fbef0" stroke-width="0.8"/>
+      </g>
+
+      <!-- 立方体 5（最右，小） -->
+      <g>
+        <polygon points="360,235 385,221 410,235 385,249" fill="url(#cubeTop)" stroke="#ffffff" stroke-width="1"/>
+        <polygon points="360,235 360,262 385,276 385,249" fill="url(#cubeLeft)" stroke="#8fbef0" stroke-width="0.8"/>
+        <polygon points="410,235 410,262 385,276 385,249" fill="url(#cubeRight)" stroke="#8fbef0" stroke-width="0.8"/>
+      </g>
+
+      <!-- 浮动小立方粒子 -->
+      <g opacity="0.9">
+        <polygon points="150,320 165,312 180,320 165,328" fill="#ffffff" opacity="0.7"/>
+        <polygon points="330,320 345,312 360,320 345,328" fill="#ffffff" opacity="0.7"/>
+        <polygon points="100,340 112,333 124,340 112,347" fill="#ffffff" opacity="0.5"/>
+        <polygon points="370,345 382,338 394,345 382,352" fill="#ffffff" opacity="0.5"/>
+      </g>
+
+      <!-- 发光小点 -->
+      <g fill="#ffffff">
+        <circle cx="70" cy="150" r="3" opacity="0.6"/>
+        <circle cx="410" cy="160" r="3" opacity="0.5"/>
+        <circle cx="90" cy="280" r="2" opacity="0.5"/>
+        <circle cx="400" cy="290" r="2" opacity="0.5"/>
+        <circle cx="240" cy="170" r="2" opacity="0.6"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- 右侧表单面板 -->
+  <div class="auth-form-wrapper">
+    <div class="auth-topbar">
+      <a href="../" class="auth-logo">
+        <img src="<?php echo !empty($conf['logo']) ? htmlspecialchars($conf['logo']) : '../assets/img/logo.png' ?>" alt="logo">
+        <span class="auth-logo-text"><?php echo $sitename ?></span>
+      </a>
+      <a href="../" class="auth-go-back">平台首页</a>
+    </div>
+
+    <form class="auth-form">
+      <h2>新用户注册</h2>
+      <p class="auth-header-info">已有账户? <a href="login.php">立即登录</a></p>
+
+      <div class="auth-field">
+        <label>用户名</label>
+        <input type="text" name="user" value="" required placeholder="输入登录用户名"/>
+      </div>
+
+      <div class="auth-field">
+        <label>密码</label>
+        <input type="password" name="pwd" id="regpwd" required placeholder="输入6位以上密码"/>
+        <button type="button" class="auth-pass-toggle" onclick="togglePass('regpwd',this)" aria-label="显示密码"><i class="fa fa-eye-slash"></i></button>
+      </div>
+
+      <div class="auth-field">
+        <label>QQ号</label>
+        <input type="text" name="qq" required placeholder="输入QQ号，用于找回密码"/>
+      </div>
+
+		<input type="hidden" name="captcha_type" value="<?php echo $conf['captcha_open']>=1 ? $conf['captcha_open'] : ''?>"/>
+		<?php if($conf['captcha_open']>=2){?><input type="hidden" name="appid" value="<?php echo $conf['captcha_id']?>"><?php }?>
+		<?php if($conf['captcha_open']>=1){?>
+      <div class="auth-field">
+        <label>安全验证</label>
+        <div id="captcha">
+          <div id="captcha_text">正在加载验证码</div>
+          <div id="captcha_wait">
+            <div class="loading"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>
+          </div>
+        </div>
+        <div id="captchaform"></div>
+      </div>
+		<?php }else{ ?>
+      <div class="auth-field">
+        <label>验证码</label>
+        <div class="auth-captcha">
+          <input type="text" name="code" autocomplete="off" required placeholder="输入验证码"/>
+          <img id="codeimg" src="./code.php?r=<?php echo time()?>" onclick="this.src='./code.php?r='+Math.random();" title="点击更换验证码">
+        </div>
+      </div>
+		<?php }?>
+
+      <input type="button" value="立即注册" id="submit_reg" class="auth-submit" style="margin-top:6px;"/>
+
+      <div class="auth-alt-links">
+        <a href="findpwd.php" class="auth-alt-outline"><i class="fa fa-unlock-alt"></i> 找回密码</a>
+        <a href="login.php" class="auth-alt-outline"><i class="fa fa-sign-in"></i> 返回登录</a>
+      </div>
+
+      <p class="auth-copyright">Copyright © <?php echo date('Y') ?> <?php echo $sitename ?> All rights reserved.</p>
+    </form>
+  </div>
+
+</div>
+<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+<script src="<?php echo $cdnpublic?>layer/2.3/layer.js"></script>
+<script>
+var hashsalt=<?php echo $addsalt_js?>;
+function togglePass(id,btn){
+  var el=document.getElementById(id);
+  var icon=btn.querySelector('i');
+  if(el.type==='password'){el.type='text';icon.className='fa fa-eye';}
+  else{el.type='password';icon.className='fa fa-eye-slash';}
+}
+</script>
+<script src="../assets/js/reguser.js?ver=<?php echo VERSION ?>-ue1"></script>
+</body>
+</html>

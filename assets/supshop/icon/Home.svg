@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Home</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF614A" offset="0%"></stop>
+            <stop stop-color="#FFA497" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FF614A" offset="0%"></stop>
+            <stop stop-color="#FFA497" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="PC-商城布局" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="桌面端-HD" transform="translate(-142.000000, -190.000000)" fill-rule="nonzero">
+            <g id="编组-2" transform="translate(100.000000, 80.000000)">
+                <g id="编组-8" transform="translate(31.000000, 110.000000)">
+                    <g id="Home" transform="translate(11.000000, 0.000000)">
+                        <rect id="矩形" fill="url(#linearGradient-1)" opacity="0" x="0" y="0" width="26" height="26"></rect>
+                        <path d="M9.906,22.5138333 L9.906,19.19125 C9.906,18.3495 10.5906667,17.6659167 11.4378333,17.6605 L14.5524167,17.6605 C15.4039167,17.6605 16.094,18.34625 16.094,19.19125 L16.094,22.5040833 C16.094,23.23425 16.6876667,23.8279167 17.42325,23.8333585 L19.5465833,23.8333585 C20.537652,23.8364491 21.4896188,23.4469373 22.19425,22.75 C22.8955635,22.0568951 23.2906875,21.1121859 23.2916667,20.1261667 L23.2916667,10.6881667 C23.2916667,9.89191666 22.9363333,9.13791666 22.3220833,8.62766666 L15.1049167,2.89683334 C13.8410004,1.8942355 12.0442282,1.92646663 10.8170833,2.97375 L3.75591666,8.62766666 C3.11326653,9.12088389 2.72818206,9.8783096 2.70833334,10.6881667 L2.70833334,20.1164167 C2.70833334,22.1693333 4.38425,23.8333585 6.45233334,23.8333585 L8.528,23.8333585 C8.88225,23.8355 9.22241666,23.6979167 9.47375,23.4498333 C9.72508334,23.2028333 9.867,22.8648333 9.867,22.5138333 L9.906,22.5138333 Z" id="路径" fill="url(#linearGradient-2)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,278 @@
+/* ============================================================
+   后台 user 区美化 - Apple 风【扩展包 ext】
+   ------------------------------------------------------------
+   配合既有 user-polish.css 使用，补两块缺口：
+   ① head2「简约皮」页面：登录/注册/找回密码/开站/regok/connect
+   ② 主皮组件缺口：pagination / list-group / nav-tabs / label·badge
+   不动 HTML 结构、不动 PHP 逻辑。
+   回滚：删除 head.php / head2.php 里本文件的 <link> 即可。
+   ============================================================ */
+
+:root {
+    --apple-blue: #0a84ff;
+    --apple-blue-hover: #0070e0;
+    --apple-bg: #f5f5f7;
+    --apple-card-bg: #ffffff;
+    --apple-text: #1d1d1f;
+    --apple-text-secondary: #6e6e73;
+    --apple-border: rgba(0, 0, 0, 0.10);
+    --apple-divider: rgba(0, 0, 0, 0.06);
+    --apple-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+    --apple-red: #ff3b30;
+}
+
+/* ========================================================
+   ①  head2 简约皮：登录 / 注册 / 找回密码 / 开站
+   ======================================================== */
+
+/* 背景图柔化，不喧宾夺主 */
+.full-bg { filter: saturate(1.08) brightness(0.97); }
+
+/* 外层卡片 widget */
+.widget {
+    background: var(--apple-card-bg) !important;
+    border: none !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 56px rgba(0,0,0,.16), 0 4px 12px rgba(0,0,0,.06) !important;
+    overflow: hidden !important;
+    margin-bottom: 24px !important;
+}
+
+/* 顶部头：盖掉拉伸的 head3.jpg，换成苹果蓝渐变 */
+.widget-content.themed-background-flat,
+.widget-content.themed-background {
+    background-image: none !important;
+    background: linear-gradient(135deg, #0a84ff 0%, #0a5dc2 100%) !important;
+    padding: 30px 20px 24px !important;
+    border: none !important;
+    margin: 0 !important;
+}
+.widget-content .img-circle {
+    border: 3px solid rgba(255,255,255,.92) !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,.22) !important;
+    width: 68px !important;
+    height: 68px !important;
+}
+
+/* 主体 block */
+.block {
+    padding: 22px 24px 22px !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.block-title {
+    border-bottom: 1px solid var(--apple-divider) !important;
+    padding-bottom: 14px !important;
+    margin-bottom: 20px !important;
+}
+.block-title h2 {
+    font-size: 19px !important;
+    font-weight: 600 !important;
+    color: var(--apple-text) !important;
+    letter-spacing: -.02em !important;
+    margin: 0 !important;
+}
+.block-title h2 .fa { color: var(--apple-blue) !important; }
+
+/* 输入组：addon + 输入框 = 一颗苹果药丸 */
+.input-group {
+    margin-bottom: 4px !important;
+    border-radius: 12px !important;
+    box-shadow: var(--apple-shadow);
+}
+.input-group-addon {
+    background: #f0f0f3 !important;
+    border: 1px solid var(--apple-border) !important;
+    border-right: none !important;
+    border-radius: 12px 0 0 12px !important;
+    color: var(--apple-blue) !important;
+    min-width: 48px;
+    font-size: 15px;
+}
+.input-group .form-control {
+    border: 1px solid var(--apple-border) !important;
+    border-left: none !important;
+    border-radius: 0 12px 12px 0 !important;
+    height: 47px !important;
+    box-shadow: none !important;
+    font-size: 15px !important;
+    color: var(--apple-text) !important;
+    background: #fff !important;
+}
+.input-group .form-control:focus {
+    border-color: var(--apple-blue) !important;
+    box-shadow: 0 0 0 3px rgba(10,132,255,.16) !important;
+    z-index: 3;
+}
+/* 末尾图片验证码 addon（reg 页） */
+.input-group .input-group-addon:last-child {
+    border-left: none !important;
+    border-right: 1px solid var(--apple-border) !important;
+    border-radius: 0 12px 12px 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+.input-group .input-group-addon:last-child img { border-radius: 0 12px 12px 0; display: block; }
+
+/* 按钮：各 variant 统一苹果化 */
+.btn-block {
+    height: 48px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 13px !important;
+}
+.btn-primary { background: var(--apple-blue) !important; border: none !important; color: #fff !important; }
+.btn-primary:hover, .btn-primary:focus { background: var(--apple-blue-hover) !important; }
+.btn-danger { background: var(--apple-red) !important; border: none !important; color: #fff !important; }
+.btn-danger:hover, .btn-danger:focus { background: #e0301f !important; }
+.btn-info {
+    background: rgba(10,132,255,.12) !important;
+    color: var(--apple-blue) !important;
+    border: none !important;
+}
+.btn-info:hover { background: rgba(10,132,255,.2) !important; }
+.btn-rounded { border-radius: 11px !important; padding: 9px 16px !important; font-weight: 500 !important; }
+.btn-default.toggle-bordered,
+.btn-effect-ripple.btn-default {
+    background: rgba(0,0,0,.05) !important;
+    color: var(--apple-text) !important;
+    border: none !important;
+    border-radius: 10px !important;
+}
+.block hr, .widget hr { border-top: 1px solid var(--apple-divider) !important; margin: 16px 0 !important; }
+
+/* 社交登录图标 */
+.form-group.text-center img { border-radius: 12px; transition: transform .2s; }
+.form-group.text-center img:hover { transform: translateY(-2px); }
+
+/* ========================================================
+   ②  主皮组件缺口
+   ======================================================== */
+
+/* 分页 */
+.pagination {
+    display: inline-flex !important;
+    flex-wrap: wrap;
+    gap: 6px !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+.pagination > li { display: inline-flex; }
+.pagination > li > a,
+.pagination > li > span {
+    position: static !important;
+    border: 1px solid var(--apple-border) !important;
+    border-radius: 10px !important;
+    color: var(--apple-text) !important;
+    min-width: 40px;
+    text-align: center;
+    margin: 0 !important;
+    padding: 8px 13px !important;
+    background: #fff !important;
+    transition: all .15s;
+}
+.pagination > li > a:hover {
+    background: rgba(10,132,255,.08) !important;
+    border-color: var(--apple-blue) !important;
+    color: var(--apple-blue) !important;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover {
+    background: var(--apple-blue) !important;
+    border-color: var(--apple-blue) !important;
+    color: #fff !important;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > a { opacity: .45; }
+
+/* list-group */
+.list-group { border-radius: 14px !important; overflow: hidden; box-shadow: var(--apple-shadow); }
+.list-group.no-radius { border-radius: 14px !important; }
+.list-group-item {
+    border: none !important;
+    border-bottom: 1px solid var(--apple-divider) !important;
+    padding: 13px 16px !important;
+    background: var(--apple-card-bg) !important;
+    transition: background .15s;
+}
+.list-group-item:first-child { border-radius: 14px 14px 0 0 !important; }
+.list-group-item:last-child { border-bottom: none !important; border-radius: 0 0 14px 14px !important; }
+a.list-group-item:hover { background: #fafafa !important; }
+
+/* nav-tabs */
+.nav-tabs { border-bottom: 1px solid var(--apple-divider) !important; }
+.nav-tabs > li { margin-bottom: -1px; }
+.nav-tabs > li > a {
+    border: none !important;
+    border-radius: 0 !important;
+    color: var(--apple-text-secondary) !important;
+    font-weight: 500 !important;
+    padding: 10px 16px !important;
+    margin-right: 4px;
+}
+.nav-tabs > li > a:hover { background: transparent !important; color: var(--apple-text) !important; }
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    border: none !important;
+    border-bottom: 2.5px solid var(--apple-blue) !important;
+    color: var(--apple-blue) !important;
+    background: transparent !important;
+    font-weight: 600 !important;
+}
+
+/* label / badge */
+.label {
+    border-radius: 7px !important;
+    padding: 4px 9px !important;
+    font-weight: 600 !important;
+    font-size: 11.5px !important;
+    letter-spacing: .2px;
+}
+.label-success { background: rgba(52,199,89,.15) !important; color: #1d8a3f !important; }
+.label-danger, .label-important { background: rgba(255,59,48,.13) !important; color: #c1121f !important; }
+.label-warning { background: rgba(255,149,0,.16) !important; color: #b25e00 !important; }
+.label-info, .label-primary { background: rgba(10,132,255,.13) !important; color: var(--apple-blue) !important; }
+.label-default { background: rgba(0,0,0,.06) !important; color: var(--apple-text-secondary) !important; }
+.badge {
+    background: var(--apple-blue) !important;
+    border-radius: 20px !important;
+    padding: 3px 9px !important;
+    font-weight: 600 !important;
+}
+
+/* ========================================================
+   ③  代理后台仪表盘 快捷按钮表格 — 移动端不溢出
+   table-layout:fixed 强制三列等宽,表格永不超出容器;
+   按钮块级、可换行,窄屏也不会被切。
+   ======================================================== */
+.dash-actions { table-layout: fixed !important; width: 100% !important; }
+.dash-actions td { padding: 4px !important; vertical-align: middle; }
+.dash-actions th { padding: 8px 4px !important; overflow: hidden; }
+.dash-actions td .btn {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 46px;
+    font-size: 14px !important;
+    line-height: 1.35;
+    white-space: normal !important;
+    padding: 12px 4px !important;
+}
+
+
+/* ===== 批次3A: 代理登录页 Apple 毛玻璃卡(局部作用域,仅 .auth-login-card) ===== */
+
+.auth-login-card{ float:none !important; width:calc(100% - 32px) !important; max-width:420px !important; margin:56px auto 24px !important; padding:0 !important; }
+@media(max-width:600px){ .auth-login-card{ margin:18px auto 20px !important; } }
+.auth-login-card .widget{ background:rgba(247,249,252,.80) !important; border:1px solid rgba(255,255,255,.6) !important; border-radius:16px !important; box-shadow:0 18px 48px -18px rgba(31,45,70,.28) !important; overflow:hidden; -webkit-backdrop-filter:saturate(135%) blur(17px); backdrop-filter:saturate(135%) blur(17px); }
+.auth-login-card .auth-login-hero{ background:linear-gradient(135deg,rgba(10,132,255,.92),rgba(88,86,214,.86)) !important; height:112px; margin:0 !important; display:flex; align-items:center; justify-content:center; }
+.auth-login-card .auth-login-hero p{ display:none; }
+.auth-login-card .auth-login-avatar{ width:60px !important; height:60px !important; border:2px solid rgba(255,255,255,.85); box-shadow:0 3px 10px rgba(0,0,0,.18); background:#fff; }
+.auth-login-card .block{ background:transparent !important; box-shadow:none !important; padding:18px 20px 20px !important; }
+.auth-login-card .input-group .form-control{ height:47px; }
+.auth-login-card a.auth-login-alt{ background:rgba(255,255,255,.62) !important; background-image:none !important; border:1px solid rgba(10,132,255,.28) !important; color:#0a6fd6 !important; box-shadow:none !important; }
+.auth-login-card a.auth-login-alt:hover{ background:rgba(235,244,255,.92) !important; color:#0a5bb8 !important; }
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){ .auth-login-card .widget{ background:rgba(247,249,252,.97) !important; } }

@@ -1,0 +1,155 @@
+/* ============================================================
+   HongWan 毛玻璃增强层（user / sup 后台）
+   ------------------------------------------------------------
+   在 user-polish.css / user-polish-ext.css 之后加载：
+   把“纯白卡片”升级为“半透明毛玻璃”，透出底层渐变背景，
+   对标目标站代理后台的高级玻璃质感。
+   回滚：删除 head.php / head2.php 里本文件的 <link> 即可。
+   ============================================================ */
+
+
+/* ---------- 0. 打通背景：让 body 渐变透出来 ---------- */
+.app,
+.app-content,
+.app-content-body {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+
+/* ---------- 1. 主卡片 .panel → 毛玻璃 ---------- */
+.panel,
+.panel-default {
+    background-color: rgba(255, 255, 255, .58) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    backdrop-filter: saturate(180%) blur(18px);
+    border: 1px solid rgba(255, 255, 255, .65) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, .10), 0 2px 8px rgba(31, 38, 135, .05) !important;
+}
+
+.panel:hover {
+    box-shadow: 0 14px 44px rgba(31, 38, 135, .14), 0 3px 10px rgba(31, 38, 135, .06) !important;
+}
+
+.panel-heading,
+.panel-heading.font-bold,
+.panel > .panel-heading[style] {
+    background: linear-gradient(135deg, rgba(255, 255, 255, .55), rgba(244, 246, 251, .32)) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .50) !important;
+    border-radius: 18px 18px 0 0 !important;
+}
+
+.panel-footer {
+    background: rgba(255, 255, 255, .35) !important;
+    border-top: 1px solid rgba(255, 255, 255, .50) !important;
+}
+
+
+/* ---------- 2. 侧边栏 → 毛玻璃 ---------- */
+.app-aside,
+.app-aside.bg-dark,
+.app-aside.bg-light,
+.app-aside.bg-light.dker {
+    background-color: rgba(255, 255, 255, .52) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, .55) !important;
+}
+
+
+/* ---------- 3. 顶栏 → 更透的玻璃 ---------- */
+.app-header.navbar,
+.app-header .navbar-header,
+.app-header .navbar-header.bg-primary,
+.app-header .navbar-header.bg-dark {
+    background-color: rgba(255, 255, 255, .60) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(22px);
+    backdrop-filter: saturate(180%) blur(22px);
+    border-bottom: 1px solid rgba(255, 255, 255, .55) !important;
+}
+
+
+/* ---------- 4. 面包屑玻璃条（“上次成功登录”那条） ---------- */
+.bg-light.lter,
+.bg-light.lter.b-b,
+.wrapper-sm.bg-light {
+    background-color: rgba(255, 255, 255, .45) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, .50) !important;
+}
+
+
+/* ---------- 5. 弹层玻璃（模态框 / 下拉菜单） ---------- */
+.modal-content {
+    background: rgba(255, 255, 255, .78) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    backdrop-filter: saturate(180%) blur(24px);
+    border: 1px solid rgba(255, 255, 255, .60) !important;
+    border-radius: 18px !important;
+}
+
+.dropdown-menu {
+    background-color: rgba(255, 255, 255, .86) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid rgba(255, 255, 255, .60) !important;
+}
+
+
+/* ---------- 6. 列表 / 分页 / 输入框 / well → 半透 ---------- */
+.list-group {
+    background: transparent !important;
+    box-shadow: 0 8px 28px rgba(31, 38, 135, .08) !important;
+}
+.list-group-item { background: rgba(255, 255, 255, .50) !important; }
+
+.pagination > li > a,
+.pagination > li > span { background: rgba(255, 255, 255, .60) !important; }
+
+.form-control { background-color: rgba(255, 255, 255, .78) !important; }
+
+.well {
+    background: rgba(255, 255, 255, .50) !important;
+    border: 1px solid rgba(255, 255, 255, .55) !important;
+    border-radius: 14px !important;
+}
+
+
+/* ---------- 7. 表格区域保持通透 ---------- */
+.table,
+.table > tbody > tr,
+.table > thead > tr,
+.table > tbody > tr > td,
+.table > thead > tr > th { background-color: transparent !important; }
+
+
+/* ---------- 8. head2 简约皮 widget 同步玻璃化 ---------- */
+.widget {
+    background: rgba(247, 249, 252, .82) !important;
+    -webkit-backdrop-filter: saturate(150%) blur(18px);
+    backdrop-filter: saturate(150%) blur(18px);
+    border: 1px solid rgba(255, 255, 255, .60) !important;
+}
+/* 登录卡已有专属玻璃参数，不覆盖（.auth-login-card .widget 特异性更高） */
+
+
+/* ---------- 9. 不支持 blur 的浏览器兜底 ---------- */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .panel, .panel-default { background-color: rgba(255, 255, 255, .96) !important; }
+    .app-aside { background-color: rgba(251, 251, 253, .97) !important; }
+    .app-header.navbar, .app-header .navbar-header { background-color: rgba(255, 255, 255, .95) !important; }
+    .modal-content, .dropdown-menu, .widget { background-color: rgba(255, 255, 255, .97) !important; }
+}
+
+
+/* ---------- 10. 移动端：减 blur 保性能 ---------- */
+@media (max-width: 768px) {
+    .panel, .panel-default { border-radius: 14px !important; }
+    .app-header.navbar { background-color: rgba(255, 255, 255, .90) !important; }
+    .panel, .panel-default, .app-aside {
+        -webkit-backdrop-filter: saturate(160%) blur(12px);
+        backdrop-filter: saturate(160%) blur(12px);
+    }
+}
